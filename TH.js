@@ -1,4 +1,7 @@
 var TH = {
+    materials : {
+        pinkLineMat : null
+    },
     threediv : null,
     width : null,
     height : null,
@@ -27,6 +30,8 @@ var TH = {
 
         TH.texloader = new THREE.TextureLoader();
         TH.clock = new THREE.Clock();
+
+        this.materials.pinkLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
     },
     _loadTextureMaterial : function(name, repeatX, repeatY, transp) {
         var texture = TH._loadTexture(name, repeatX, repeatY);
@@ -158,6 +163,7 @@ var TH = {
         TH.scene.add(cylinder);
     },
     addModel : function(x, y, z, model) {
+        this.lines = [];
         model.forEach((point) => {
             point.conn.forEach((otherId) => {
                 var other = null;
@@ -182,7 +188,6 @@ var TH = {
         var scale = 0.1;
         pt1.position.multiplyScalar(scale);
         pt2.position.multiplyScalar(scale);
-        var whiteLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
         var exists = false;
         this.lines.forEach((existing) => {
             if ((existing.id1 == pt1.pointId && existing.id2 == pt2.pointId) ||
@@ -197,7 +202,7 @@ var TH = {
         var v2 = new THREE.Vector3(pt2.position.x, pt2.position.y, pt2.position.z);
         geom.vertices.push(v1);
         geom.vertices.push(v2);
-        var line = new THREE.Line(geom, whiteLineMat);
+        var line = new THREE.Line(geom, this.materials.pinkLineMat);
         var lineData = {
             obj: line,
             geometry: line.geometry,

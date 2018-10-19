@@ -19,7 +19,8 @@ function addSprite(x, y, z, width, height, scale, textureName, tilesX, tilesY, t
 
 function addObject(x, y, z, radius, model) {
     TH.addModel(x, y, z, model);
-    MA.addCircle(x, z, radius);
+    if (radius)
+        MA.addCircle(x, z, radius);
 }
 
 function addWallShape(x, y, z, width, height, points, textureNames, addBodies, transparent) {
