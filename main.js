@@ -84,6 +84,13 @@ function update() {
     else if (keys.right in keysDown)
         rotatePlayer(-0.03);
 
+    var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth / 20;
+
+    // Deadzone in the middle.
+    if (rotation > -0.003 && rotation < 0.003)
+        rotation = 0;
+    rotatePlayer(rotation);
+
     if (keys.w in keysDown)
         moveForward(moveSpeed);
     else if (keys.s in keysDown)
