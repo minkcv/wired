@@ -79,10 +79,12 @@ function update() {
     if (debug && keys.shift in keysDown)
         moveSpeed = 8;
 
+    /*
     if (keys.left in keysDown)
         rotatePlayer(0.03);
     else if (keys.right in keysDown)
         rotatePlayer(-0.03);
+    */
 
     var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth / 20;
 
@@ -91,14 +93,14 @@ function update() {
         rotation = 0;
     rotatePlayer(rotation);
 
-    if (keys.w in keysDown)
+    if (keys.w in keysDown || keys.up in keysDown)
         moveForward(moveSpeed);
-    else if (keys.s in keysDown)
+    else if (keys.s in keysDown || keys.down in keysDown)
         moveBackward(moveSpeed);
 
-    if (keys.a in keysDown)
+    if (keys.a in keysDown || keys.left in keysDown)
         moveLeft(moveSpeed);
-    else if (keys.d in keysDown)
+    else if (keys.d in keysDown || keys.right in keysDown)
         moveRight(moveSpeed);
 
     if (debug) {
