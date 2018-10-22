@@ -206,19 +206,20 @@ var TH = {
         });
         if (exists)
             return null;
-        var geom = new THREE.Geometry();
-        var v1 = new THREE.Vector3(pt1.position.x, pt1.position.y, pt1.position.z);
-        var v2 = new THREE.Vector3(pt2.position.x, pt2.position.y, pt2.position.z);
-        geom.vertices.push(v1);
-        geom.vertices.push(v2);
+        var geom = new THREE.BufferGeometry();
+        var vertices = new Float32Array([
+            pt1.position.x, pt1.position.y, pt1.position.z,
+            pt2.position.x, pt2.position.y, pt2.position.z
+        ]);
+        geom.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
         var line = new THREE.Line(geom, this.materials.pinkLineMat);
         var lineData = {
             obj: line,
             geometry: line.geometry,
             id1: pt1.pointId,
             id2: pt2.pointId,
-            pos1: v1,
-            pos2: v2
+            pos1: vertices[0],
+            pos2: vertices[1]
         };
         this.lines.push(lineData);
         return line;
