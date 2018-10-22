@@ -162,8 +162,9 @@ var TH = {
         cylinder.position.z = z;
         TH.scene.add(cylinder);
     },
-    addModel : function(x, y, z, model) {
+    addModel : function(x, y, z, model, rotation) {
         this.lines = [];
+        var obj = new THREE.Object3D();
         model.forEach((point) => {
             point.conn.forEach((otherId) => {
                 var other = null;
@@ -172,17 +173,19 @@ var TH = {
                     other = candidate;
                 });
                 if (other != null) {
-                    var offset = new THREE.Vector3(x, y, z);
                     var pos1 = new THREE.Vector3(point.pos.x, point.pos.y, point.pos.z);
                     var pos2 = new THREE.Vector3(other.pos.x, other.pos.y, other.pos.z);
                     var pt1 = {pointId: point.id, position: pos1};
                     var pt2 = {pointId: other.id, position: pos2};
                     var line = this.createLine(pt1, pt2);
-                    if (line)
-                        line.position.add(offset);
+                    if (line != null)
+                        obj.add(line);
                 }
             });
         });
+        obj.position.set(x, y, z);
+        obj.rotateY(rotation);
+        this.scene.add(obj);
     },
     createLine : function(pt1, pt2) {
         var scale = 0.1;
@@ -212,7 +215,6 @@ var TH = {
             pos2: v2
         };
         this.lines.push(lineData);
-        this.scene.add(line);
         return line;
     },
     update : function() {
