@@ -1,7 +1,7 @@
 var TH = {
     materials : {
         pinkLineMat : null,
-        blackBasicMaterial: null
+        blackBasicMat : null,
     },
     threediv : null,
     width : null,
@@ -21,7 +21,7 @@ var TH = {
         TH.height = TH.threediv.clientHeight;
         TH.scene = new THREE.Scene();
         //TH.scene.background = new THREE.Color(0x0c1013);
-        TH.camera = new THREE.PerspectiveCamera(45, TH.width / TH.height, 0.1, 4000);
+        TH.camera = new THREE.PerspectiveCamera(45, TH.width / TH.height, 0.1, 1000);
         TH.scene.add(TH.camera);
         TH.camera.rotateY(-3.14 / 2);
 
@@ -33,7 +33,7 @@ var TH = {
         TH.clock = new THREE.Clock();
 
         this.materials.pinkLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
-        this.materials.blackBasicMaterial = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
+        this.materials.blackBasicMat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
     },
     _loadTextureMaterial : function(name, repeatX, repeatY, transp) {
         var texture = TH._loadTexture(name, repeatX, repeatY);
@@ -91,15 +91,10 @@ var TH = {
         plane.position.y = y;
         TH.scene.add(plane);
     },
-    addWallPlane : function(p1, p2, width, height, textureName, y, transparent) {
+    addWall : function(p1, p2, height, y) {
         var length = distance(p1, p2);
-        var geometry = new THREE.PlaneGeometry(length, height);
-        var repeat = Math.floor(length / width);
-        var mat = null;
-        if (textureName)
-            mat = TH._loadTextureMaterial(textureName, repeat || 1, 1, transparent);
-        else
-            mat = this.materials.blackBasicMaterial;
+        var geometry = new THREE.PlaneBufferGeometry(length, height, 32);
+        var mat = this.materials.blackBasicMat;
         var plane = new THREE.Mesh(geometry, mat);
         var midpoint = {x: p1.x + (p2.x - p1.x) / 2, y: p1.y + (p2.y - p1.y) / 2};
         plane.position.x = midpoint.x;
@@ -170,7 +165,7 @@ var TH = {
     },
     addModel : function(x, y, z, model, rotation) {
         this.lines = [];
-        var obj = new THREE.Object3D();
+        var geometries = [];
         model.forEach((point) => {
             point.conn.forEach((otherId) => {
                 var other = null;
@@ -183,15 +178,17 @@ var TH = {
                     var pos2 = new THREE.Vector3(other.pos.x, other.pos.y, other.pos.z);
                     var pt1 = {pointId: point.id, position: pos1};
                     var pt2 = {pointId: other.id, position: pos2};
-                    var line = this.createLine(pt1, pt2);
-                    if (line != null)
-                        obj.add(line);
+                    var lineGeom = this.createLine(pt1, pt2);
+                    if (lineGeom)
+                        geometries.push(lineGeom);
                 }
             });
         });
-        obj.position.set(x, y, z);
-        obj.rotateY(rotation);
-        this.scene.add(obj);
+        var mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries);
+        var model = new THREE.LineSegments(mergedGeometry, this.materials.pinkLineMat);
+        model.position.set(x, y, z);
+        model.rotateY(rotation);
+        this.scene.add(model);
     },
     createLine : function(pt1, pt2) {
         var scale = 0.1;
@@ -212,17 +209,12 @@ var TH = {
             pt2.position.x, pt2.position.y, pt2.position.z
         ]);
         geom.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-        var line = new THREE.Line(geom, this.materials.pinkLineMat);
         var lineData = {
-            obj: line,
-            geometry: line.geometry,
             id1: pt1.pointId,
             id2: pt2.pointId,
-            pos1: vertices[0],
-            pos2: vertices[1]
         };
         this.lines.push(lineData);
-        return line;
+        return geom;
     },
     update : function() {
         var delta = TH.clock.getDelta(); 
@@ -231,7 +223,6 @@ var TH = {
         }
     },
     clearScene : function() {
-        // TODO: cleanup materials?
         while (TH.scene.children.length)
             TH.scene.remove(TH.scene.children[0]);
     }

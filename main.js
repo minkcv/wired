@@ -75,6 +75,7 @@ function moveBackward(moveSpeed) {
 }
 
 function update() {
+    stats.begin();
     var moveSpeed = 1;
     if (debug && keys.shift in keysDown)
         moveSpeed = 8;
@@ -109,6 +110,7 @@ function update() {
     }
 
     TH.update();
+    stats.end();
 }
 
 function init() {
