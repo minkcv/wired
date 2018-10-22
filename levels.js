@@ -16,10 +16,16 @@ function loadLevel1() {
     MA.addWall({x: 60, y: 60}, {x: 60, y: 1000});
     MA.addWall({x: -60, y: 60}, {x: -60, y: 1000});
     MA.addWall({x: 60, y: 1000}, {x: -60, y: 1000});
+
+    TH.addWallPlane({x: 61, y: 61}, {x: 61, y: 1001}, 1, 100, null, 0);
+    TH.addWallPlane({x: -61, y: 61}, {x: -61, y: 1001}, 1, 100, null, 0);
     
     MA.addWall({x: 60, y: -60}, {x: 60, y: -1000});
     MA.addWall({x: -60, y: -60}, {x: -60, y: -1000});
     MA.addWall({x: 60, y: -1000}, {x: -60, y: -1000});
+    
+    TH.addWallPlane({x: 61, y: -61}, {x: 61, y: -1001}, 1, 100, null, 0);
+    TH.addWallPlane({x: -61, y: -61}, {x: -61, y: -1001}, 1, 100, null, 0);
 
     MA.addWall({x: -60, y: 60}, {x: -1000, y: 60});
     MA.addWall({x: -60, y: -60}, {x: -1000, y: -60});

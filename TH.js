@@ -1,6 +1,7 @@
 var TH = {
     materials : {
-        pinkLineMat : null
+        pinkLineMat : null,
+        blackBasicMaterial: null
     },
     threediv : null,
     width : null,
@@ -32,6 +33,7 @@ var TH = {
         TH.clock = new THREE.Clock();
 
         this.materials.pinkLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
+        this.materials.blackBasicMaterial = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
     },
     _loadTextureMaterial : function(name, repeatX, repeatY, transp) {
         var texture = TH._loadTexture(name, repeatX, repeatY);
@@ -93,7 +95,11 @@ var TH = {
         var length = distance(p1, p2);
         var geometry = new THREE.PlaneGeometry(length, height);
         var repeat = Math.floor(length / width);
-        var mat = TH._loadTextureMaterial(textureName, repeat || 1, 1, transparent);
+        var mat = null;
+        if (textureName)
+            mat = TH._loadTextureMaterial(textureName, repeat || 1, 1, transparent);
+        else
+            mat = this.materials.blackBasicMaterial;
         var plane = new THREE.Mesh(geometry, mat);
         var midpoint = {x: p1.x + (p2.x - p1.x) / 2, y: p1.y + (p2.y - p1.y) / 2};
         plane.position.x = midpoint.x;
