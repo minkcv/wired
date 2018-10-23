@@ -94,3 +94,36 @@ function loadLevel2() {
     TH.addMovingModel({x: 300, y: 30, z: -3380}, {x: 300, y: 30, z: 3380}, models.ship, Math.PI / 2, 0.7, true, 0.3);
     TH.addMovingModel({x: 400, y: -30, z: 4000}, {x: 400, y: -30, z: -4000}, models.ship, -Math.PI / 2, 0.4, true, 0.3);
 }
+
+function loadLevel3() {
+    createPlayer(-30, 0, 0);
+
+    addObject(200, TH.floorY, 80, 10, models.bench, Math.PI / 2, 0.08);
+    addObject(200, TH.floorY, -80, 10, models.bench, -Math.PI / 2, 0.08);
+    addObject(180 * 2.8, TH.floorY, 80, 10, models.fountain, 1.1, 0.08);
+    addObject(180 * 2.8, TH.floorY, -80, 10, models.fountain, 1.9, 0.08);
+    
+    addObject(180 * 2, TH.floorY, -80, 10, models.tree, 1.9, 0.08);
+    addObject(180 * 2, TH.floorY, 80, 10, models.tree, 1.9, 0.08);
+
+    addObject(0, TH.floorY, 0, 0, models.path, Math.PI / 2);
+    for (var index = 0; index < 2; index++) {
+        addObject(100 * index, TH.floorY, 0, 0, models.path, Math.PI / 2);
+    }
+    addObject(100 * index, TH.floorY, 0, 0, models.teePath, Math.PI / 2);
+    for (var index = 3; index < 5; index++) {
+        addObject(100 * index, TH.floorY, 0, 0, models.path, Math.PI / 2);
+    }
+    addObject(100 * index, TH.floorY, 0, 0, models.coveredPath, Math.PI / 2);
+    for (var index = 6; index < 8; index++) {
+        addObject(100 * index, TH.floorY, 0, 0, models.path, Math.PI / 2);
+    }
+
+    for (var index = 0; index < 8; index++) {
+        addObject(100 * index, TH.floorY, 180, 0, models.grass, Math.PI / 2);
+        addObject(100 * index, TH.floorY, -180, 0, models.grass, Math.PI / 2);
+        if (index == 2 || index == 5) continue;
+        addObject(100 * index, TH.floorY, -80, 0, models.grass, Math.PI / 2);
+        addObject(100 * index, TH.floorY, 80, 0, models.grass, Math.PI / 2);
+    }
+}
