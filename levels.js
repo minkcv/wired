@@ -1,17 +1,17 @@
 function loadLevel1() {
     createPlayer(0, -400, Math.PI / 2);
-    addObject(0, TH.floorY, 0, 0, intersection, 0);
+    addObject(0, TH.floorY, 0, 0, models.intersection, 0);
     for (let index = 1; index < 10; index++) {
-        addObject(0, -30, index * 100 + 10, 0, tunnel, 0);
+        addObject(0, -30, index * 100 + 10, 0, models.tunnel, 0);
     }
     for (let index = 1; index < 10; index++) {
-        addObject(100 * index + 10, -30, 0, 0, tunnel, Math.PI / 2);
+        addObject(100 * index + 10, -30, 0, 0, models.tunnel, Math.PI / 2);
     }
     for (let index = 1; index < 10; index++) {
-        addObject(0, -30, -index * 100 - 10, 0, tunnel, 0);
+        addObject(0, -30, -index * 100 - 10, 0, models.tunnel, 0);
     }
     for (let index = 1; index < 10; index++) {
-        addObject(-index * 100 - 10, -30, 0, 0, tunnel, Math.PI / 2);
+        addObject(-index * 100 - 10, -30, 0, 0, models.tunnel, Math.PI / 2);
     }
     MA.addWall({x: 60, y: 60}, {x: 60, y: 1000});
     MA.addWall({x: -60, y: 60}, {x: -60, y: 1000});
@@ -35,21 +35,21 @@ function loadLevel1() {
     MA.addWall({x: 60, y: -60}, {x: 1000, y: -60});
     MA.addWall({x: 1000, y: 60}, {x: 1000, y: -60});
 
-    addObject(45, TH.floorY, 45, 10, sign, -3 * Math.PI / 4, 0.07);
-    addObject(910, TH.floorY, 0, 10, sign, -Math.PI / 2, 0.07);
+    addObject(45, TH.floorY, 45, 10, models.sign, -3 * Math.PI / 4, 0.07);
+    addObject(910, TH.floorY, 0, 10, models.sign, -Math.PI / 2, 0.07);
 }
 
 function loadLevel2() {
     createPlayer(0, -200, Math.PI / 2);
     for (var index = -3; index < 3; index++) {
-        addObject(0, TH.floorY, index * 100 + 10, 0, tunnel, 0);
+        addObject(0, TH.floorY, index * 100 + 10, 0, models.tunnel, 0);
     }
-    addObject(0, TH.floorY, index * 100 + 10, 0, tunnelWindow, 0);
+    addObject(0, TH.floorY, index * 100 + 10, 0, models.tunnelWindow, 0);
     for (index = 4; index < 8; index++) {
-        addObject(0, TH.floorY, index * 100 + 10, 0, tunnel, 0);
+        addObject(0, TH.floorY, index * 100 + 10, 0, models.tunnel, 0);
     }
-    addObject(0, TH.floorY, -340, 0, doorLocked, 0);
-    addObject(0, TH.floorY, 760, 0, doorLocked, Math.PI);
+    addObject(0, TH.floorY, -340, 0, models.doorLocked, 0);
+    addObject(0, TH.floorY, 760, 0, models.doorLocked, Math.PI);
 
     MA.addWall({x: 60, y: -340}, {x: 60, y: 760});
     MA.addWall({x: -60, y: -340}, {x: -60, y: 760});
@@ -70,22 +70,27 @@ function loadLevel2() {
     TH.addFloor({x: -61, y: -340}, {x: 61, y: 760}, 31);
     TH.addFloor({x: -61, y: -340}, {x: 61, y: 760}, -31);
 
-    for (var index = -60; index < 60; index++) {
-        addObject(840, -700, index * 100 + 10, 0, simpleTunnel, 0);
-        addObject(800, 60, index * 100 + 10, 0, simpleTunnel, 0);
-        addObject(860, -300, index * 100 + 10, 0, simpleTunnel, 0);
+    for (var index = -30; index < 30; index++) {
+        addObject(840, -700, index * 100 + 10, 0, models.simpleTunnel, 0);
+        addObject(800, 60, index * 100 + 10, 0, models.simpleTunnel, 0);
+        addObject(860, -300, index * 100 + 10, 0, models.simpleTunnel, 0);
 
-        addObject(index * 100, 200, -800, 0, simpleTunnel, Math.PI / 2);
-        addObject(index * 100, -200, -400, 0, simpleTunnel, Math.PI / 2);
-        addObject(index * 100, -500, -100, 0, simpleTunnel, Math.PI / 2);
-        addObject(index * 100, -160, 400, 0, simpleTunnel, Math.PI / 2);
-        addObject(index * 100, 300, 800, 0, simpleTunnel, Math.PI / 2);
-        addObject(index * 100, 160, 1200, 0, simpleTunnel, Math.PI / 2);
+        addObject(index * 100, 200, -800, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -200, -400, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -500, -100, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -160, 400, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, 300, 800, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, 160, 1200, 0, models.simpleTunnel, Math.PI / 2);
 
 
-        addObject(400, index * 100, 1200, 0, shaft, Math.PI / 2);
-        addObject(1400, index * 100, 200, 0, shaft, Math.PI / 2);
-        addObject(600, index * 100, 600, 0, shaft, Math.PI / 2);
-        addObject(600, index * 100, -100, 0, shaft, Math.PI / 2);
+        addObject(400, index * 100, 1200, 0, models.shaft, Math.PI / 2);
+        addObject(1400, index * 100, 200, 0, models.shaft, Math.PI / 2);
+        addObject(600, index * 100, 600, 0, models.shaft, Math.PI / 2);
+        addObject(600, index * 100, -100, 0, models.shaft, Math.PI / 2);
     }
+
+    TH.addMovingModel({x: -2000, y: 300, z: 380}, {x: 4000, y: 300, z: 380}, models.ship, Math.PI, 0.7, true, 0.3);
+    TH.addMovingModel({x: 4000, y: -300, z: -380}, {x: -4000, y: -300, z: -380}, models.ship, 0, 0.7, true, 0.3);
+    TH.addMovingModel({x: 300, y: 30, z: -3380}, {x: 300, y: 30, z: 3380}, models.ship, Math.PI / 2, 0.7, true, 0.3);
+    TH.addMovingModel({x: 400, y: -30, z: 4000}, {x: 400, y: -30, z: -4000}, models.ship, -Math.PI / 2, 0.4, true, 0.3);
 }
