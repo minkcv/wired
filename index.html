@@ -96,6 +96,9 @@
                 mouseDY = 0;
                 mouseX = threed.clientWidth / 2; // Stop turning.
             }, false);
+            addEventListener('resize', function(e) {
+                TH.resize(threed.clientWidth, threed.clientHeight);
+            }, false);
         </script>
         <script src='models/tunnel.js' type='text/javascript'></script>
         <script src='models/tunnelWindow.js' type='text/javascript'></script>

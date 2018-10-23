@@ -42,6 +42,9 @@ var TH = {
         update();
         TH.renderer.render( TH.scene, TH.camera );
     },
+    resize : function(width, height) {
+        TH.renderer.setSize(width, height);
+    },
     addWall : function(p1, p2, height, y) {
         var length = distance(p1, p2);
         var geometry = new THREE.PlaneBufferGeometry(length, height, 32);
