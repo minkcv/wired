@@ -17,8 +17,8 @@ function addSprite(x, y, z, width, height, scale, textureName, tilesX, tilesY, t
         MA.addCircle(x, z, width * 8);
 }
 
-function addObject(x, y, z, radius, model, rotation) {
-    TH.addModel(x, y, z, model, rotation);
+function addObject(x, y, z, radius, model, rotation, scale, mat) {
+    TH.addModel(x, y, z, model, rotation, scale, mat);
     if (radius)
         MA.addCircle(x, z, radius);
 }

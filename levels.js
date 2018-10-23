@@ -34,4 +34,7 @@ function loadLevel1() {
     MA.addWall({x: 60, y: 60}, {x: 1000, y: 60});
     MA.addWall({x: 60, y: -60}, {x: 1000, y: -60});
     MA.addWall({x: 1000, y: 60}, {x: 1000, y: -60});
+
+    addObject(45, -20, 45, 10, sign, -3 * Math.PI / 4, 0.05, TH.materials.whiteLineMat);
+    addObject(910, -20, 0, 10, sign, -Math.PI / 2, 0.05, TH.materials.whiteLineMat);
 }

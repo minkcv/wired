@@ -1,6 +1,7 @@
 var TH = {
     materials : {
         pinkLineMat : null,
+        whiteLineMat : null,
         blackBasicMat : null,
     },
     threediv : null,
@@ -33,6 +34,7 @@ var TH = {
         TH.clock = new THREE.Clock();
 
         this.materials.pinkLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
+        this.materials.whiteLineMat = new THREE.LineBasicMaterial({color: 0xffffff});
         this.materials.blackBasicMat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
     },
     _loadTextureMaterial : function(name, repeatX, repeatY, transp) {
@@ -163,7 +165,8 @@ var TH = {
         cylinder.position.z = z;
         TH.scene.add(cylinder);
     },
-    addModel : function(x, y, z, model, rotation) {
+    addModel : function(x, y, z, model, rotation, scale, mat) {
+        mat = mat || this.materials.pinkLineMat;
         this.lines = [];
         var geometries = [];
         model.forEach((point) => {
@@ -178,20 +181,20 @@ var TH = {
                     var pos2 = new THREE.Vector3(other.pos.x, other.pos.y, other.pos.z);
                     var pt1 = {pointId: point.id, position: pos1};
                     var pt2 = {pointId: other.id, position: pos2};
-                    var lineGeom = this.createLine(pt1, pt2);
+                    var lineGeom = this.createLine(pt1, pt2, scale);
                     if (lineGeom)
                         geometries.push(lineGeom);
                 }
             });
         });
         var mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries);
-        var model = new THREE.LineSegments(mergedGeometry, this.materials.pinkLineMat);
+        var model = new THREE.LineSegments(mergedGeometry, mat);
         model.position.set(x, y, z);
         model.rotateY(rotation);
         this.scene.add(model);
     },
-    createLine : function(pt1, pt2) {
-        var scale = 0.1;
+    createLine : function(pt1, pt2, scale) {
+        var scale = scale || 0.1;
         pt1.position.multiplyScalar(scale);
         pt2.position.multiplyScalar(scale);
         var exists = false;
