@@ -1,17 +1,17 @@
 function loadLevel1() {
     createPlayer(0, -400, Math.PI / 2);
-    addObject(0, -20, 0, 0, intersection, 0);
+    addObject(0, TH.floorY, 0, 0, intersection, 0);
     for (let index = 1; index < 10; index++) {
-        addObject(0, -20, index * 100 + 10, 0, tunnel, 0);
+        addObject(0, -30, index * 100 + 10, 0, tunnel, 0);
     }
     for (let index = 1; index < 10; index++) {
-        addObject(100 * index + 10, -20, 0, 0, tunnel, Math.PI / 2);
+        addObject(100 * index + 10, -30, 0, 0, tunnel, Math.PI / 2);
     }
     for (let index = 1; index < 10; index++) {
-        addObject(0, -20, -index * 100 - 10, 0, tunnel, 0);
+        addObject(0, -30, -index * 100 - 10, 0, tunnel, 0);
     }
     for (let index = 1; index < 10; index++) {
-        addObject(-index * 100 - 10, -20, 0, 0, tunnel, Math.PI / 2);
+        addObject(-index * 100 - 10, -30, 0, 0, tunnel, Math.PI / 2);
     }
     MA.addWall({x: 60, y: 60}, {x: 60, y: 1000});
     MA.addWall({x: -60, y: 60}, {x: -60, y: 1000});
@@ -35,6 +35,57 @@ function loadLevel1() {
     MA.addWall({x: 60, y: -60}, {x: 1000, y: -60});
     MA.addWall({x: 1000, y: 60}, {x: 1000, y: -60});
 
-    addObject(45, -20, 45, 10, sign, -3 * Math.PI / 4, 0.05, TH.materials.whiteLineMat);
-    addObject(910, -20, 0, 10, sign, -Math.PI / 2, 0.05, TH.materials.whiteLineMat);
+    addObject(45, TH.floorY, 45, 10, sign, -3 * Math.PI / 4, 0.07);
+    addObject(910, TH.floorY, 0, 10, sign, -Math.PI / 2, 0.07);
+}
+
+function loadLevel2() {
+    createPlayer(0, -200, Math.PI / 2);
+    for (var index = -3; index < 3; index++) {
+        addObject(0, TH.floorY, index * 100 + 10, 0, tunnel, 0);
+    }
+    addObject(0, TH.floorY, index * 100 + 10, 0, tunnelWindow, 0);
+    for (index = 4; index < 8; index++) {
+        addObject(0, TH.floorY, index * 100 + 10, 0, tunnel, 0);
+    }
+    addObject(0, TH.floorY, -340, 0, doorLocked, 0);
+    addObject(0, TH.floorY, 760, 0, doorLocked, Math.PI);
+
+    MA.addWall({x: 60, y: -340}, {x: 60, y: 760});
+    MA.addWall({x: -60, y: -340}, {x: -60, y: 760});
+
+    MA.addWall({x: 60, y: -340}, {x: -60, y: -340});
+    MA.addWall({x: 60, y: 760}, {x: -60, y: 760});
+
+    TH.addWall({x: -61, y: -350}, {x: -61, y: 770}, 100, 0);
+    TH.addWall({x: 61, y: -350}, {x: 61, y: 260}, 100, 0);
+    TH.addWall({x: 61, y: 360}, {x: 61, y: 770}, 100, 0);
+
+    TH.addWall({x: 61, y: 260}, {x: 61, y: 360}, 50, -45);
+    TH.addWall({x: 61, y: 260}, {x: 61, y: 360}, 50, 45);
+
+    TH.addWall({x: 61, y: -350}, {x: -61, y: -350}, 100, 0);
+    TH.addWall({x: 61, y: 770}, {x: -61, y: 770}, 100, 0);
+
+    TH.addFloor({x: -61, y: -340}, {x: 61, y: 760}, 31);
+    TH.addFloor({x: -61, y: -340}, {x: 61, y: 760}, -31);
+
+    for (var index = -60; index < 60; index++) {
+        addObject(840, -700, index * 100 + 10, 0, simpleTunnel, 0);
+        addObject(800, 60, index * 100 + 10, 0, simpleTunnel, 0);
+        addObject(860, -300, index * 100 + 10, 0, simpleTunnel, 0);
+
+        addObject(index * 100, 200, -800, 0, simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -200, -400, 0, simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -500, -100, 0, simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -160, 400, 0, simpleTunnel, Math.PI / 2);
+        addObject(index * 100, 300, 800, 0, simpleTunnel, Math.PI / 2);
+        addObject(index * 100, 160, 1200, 0, simpleTunnel, Math.PI / 2);
+
+
+        addObject(400, index * 100, 1200, 0, shaft, Math.PI / 2);
+        addObject(1400, index * 100, 200, 0, shaft, Math.PI / 2);
+        addObject(600, index * 100, 600, 0, shaft, Math.PI / 2);
+        addObject(600, index * 100, -100, 0, shaft, Math.PI / 2);
+    }
 }

@@ -3,6 +3,7 @@ var TH = {
         pinkLineMat : null,
         whiteLineMat : null,
         blackBasicMat : null,
+        greenBasicMat: null
     },
     threediv : null,
     width : null,
@@ -22,7 +23,7 @@ var TH = {
         TH.height = TH.threediv.clientHeight;
         TH.scene = new THREE.Scene();
         //TH.scene.background = new THREE.Color(0x0c1013);
-        TH.camera = new THREE.PerspectiveCamera(45, TH.width / TH.height, 0.1, 1000);
+        TH.camera = new THREE.PerspectiveCamera(45, TH.width / TH.height, 0.1, 4000);
         TH.scene.add(TH.camera);
         TH.camera.rotateY(-3.14 / 2);
 
@@ -34,8 +35,9 @@ var TH = {
         TH.clock = new THREE.Clock();
 
         this.materials.pinkLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
-        this.materials.whiteLineMat = new THREE.LineBasicMaterial({color: 0xffffff});
+        this.materials.whiteLineMat = new THREE.LineBasicMaterial({color: 0xf260d8});
         this.materials.blackBasicMat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
+        this.materials.greenBasicMat = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide});
     },
     _loadTextureMaterial : function(name, repeatX, repeatY, transp) {
         var texture = TH._loadTexture(name, repeatX, repeatY);
@@ -120,13 +122,13 @@ var TH = {
         floor.rotation.x = -Math.PI / 2;
         TH.scene.add(floor);
     },
-    addFloor : function (x, y, z, width, depth, image, transparent) {
-        var repeatX = Math.floor(width / 100);
-        var repeatY = Math.floor(depth / 100);
-        var mat = TH._loadTextureMaterial(image, repeatX || 1, repeatY || 1, transparent);
-        var geometry = new THREE.PlaneGeometry(width, depth);
+    addFloor : function (p1, p2, y) {
+        var width = p2.x - p1.x;
+        var depth = p2.y - p1.y;
+        var mat = this.materials.blackBasicMat;
+        var geometry = new THREE.PlaneBufferGeometry(width, depth);
         var floor = new THREE.Mesh( geometry, mat);
-        floor.position.set(x, y, z);
+        floor.position.set(p1.x + width / 2, y, p1.y + depth / 2);
         floor.rotation.x = -Math.PI / 2;
         TH.scene.add(floor);
     },
@@ -165,8 +167,8 @@ var TH = {
         cylinder.position.z = z;
         TH.scene.add(cylinder);
     },
-    addModel : function(x, y, z, model, rotation, scale, mat) {
-        mat = mat || this.materials.pinkLineMat;
+    addModel : function(x, y, z, model, yRotation, scale) {
+        var mat = this.materials.pinkLineMat;
         this.lines = [];
         var geometries = [];
         model.forEach((point) => {
@@ -190,7 +192,7 @@ var TH = {
         var mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries);
         var model = new THREE.LineSegments(mergedGeometry, mat);
         model.position.set(x, y, z);
-        model.rotateY(rotation);
+        model.rotateY(yRotation);
         this.scene.add(model);
     },
     createLine : function(pt1, pt2, scale) {

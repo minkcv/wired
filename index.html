@@ -60,7 +60,7 @@
         var stats = new Stats();
         stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
         document.body.appendChild( stats.dom );
-        if (!debug) {
+        if (!false) {
             document.body.removeChild(stats.dom);
             document.body.style.textAlign = 'center';
             threed.style.float = 'none';
@@ -98,8 +98,12 @@
         }, false);
         </script>
         <script src='models/tunnel.js' type='text/javascript'></script>
+        <script src='models/tunnelWindow.js' type='text/javascript'></script>
         <script src='models/intersection.js' type='text/javascript'></script>
+        <script src='models/doorLocked.js' type='text/javascript'></script>
         <script src='models/sign.js' type='text/javascript'></script>
+        <script src='models/simpleTunnel.js' type='text/javascript'></script>
+        <script src='models/shaft.js' type='text/javascript'></script>
         <script src='util.js' type='text/javascript'></script>
         <script src='TH.js' type='text/javascript'></script>
         <script src='MA.js' type='text/javascript'></script>

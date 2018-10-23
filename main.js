@@ -17,8 +17,8 @@ function addSprite(x, y, z, width, height, scale, textureName, tilesX, tilesY, t
         MA.addCircle(x, z, width * 8);
 }
 
-function addObject(x, y, z, radius, model, rotation, scale, mat) {
-    TH.addModel(x, y, z, model, rotation, scale, mat);
+function addObject(x, y, z, radius, model, rotation, scale) {
+    TH.addModel(x, y, z, model, rotation, scale);
     if (radius)
         MA.addCircle(x, z, radius);
 }
@@ -116,10 +116,10 @@ function update() {
 function init() {
     MA.init();
     TH.init();
-    loadLevel1();
+    //loadLevel1();
     //TH.clearScene();
     //MA.clearWorld();
-    //loadLevel2();
+    loadLevel2();
     //loadLevel3();
     //loadLevel4();
     //loadLevel5();
