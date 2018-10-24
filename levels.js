@@ -141,5 +141,7 @@ function loadLevel3() {
     MA.addWall({x: 230, y: 60}, {x: 230, y: 30}); // Right wall 4
     MA.addWall({x: 230, y: 30}, {x: 750, y: 30}); // Right wall 5
 
-    addSpinningObject(690, -30, 0, models.flower, 0.01, 0.08, 10);
+    addSpinningObject(720, -30, 0, models.flower, 0.01, 0.08, 10);
+    addObject(820, -45, -60, 10, models.angel, -Math.PI / 2);
+    addObject(820, -45, 60, 10, models.angel, -Math.PI / 2);
 }
