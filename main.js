@@ -58,26 +58,22 @@ function moveForward(moveSpeed) {
     var xv = Math.cos(MA.player.angle) * moveSpeed;
     var yv = Math.sin(MA.player.angle) * moveSpeed;
     Matter.Body.applyForce(MA.player, MA.player.position, {x: xv, y: yv});
-    TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
 }
 function moveLeft(moveSpeed) {
     var xv = Math.cos(MA.player.angle - Math.PI / 2) * moveSpeed;
     var yv = Math.sin(MA.player.angle - Math.PI / 2) * moveSpeed;
     Matter.Body.applyForce(MA.player, MA.player.position, {x: xv, y: yv});
-    TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
 }
 function moveRight(moveSpeed) {
     var xv = Math.cos(MA.player.angle + Math.PI / 2) * moveSpeed;
     var yv = Math.sin(MA.player.angle + Math.PI / 2) * moveSpeed;
     Matter.Body.applyForce(MA.player, MA.player.position, {x: xv, y: yv});
-    TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
 }
 
 function moveBackward(moveSpeed) {
     var xv = -Math.cos(MA.player.angle) * moveSpeed;
     var yv = -Math.sin(MA.player.angle) * moveSpeed;
     Matter.Body.applyForce(MA.player, MA.player.position, {x: xv, y: yv});
-    TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
 }
 
 function update() {
@@ -94,7 +90,7 @@ function update() {
     */
 
     var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth / 20;
-
+    TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
     // Deadzone in the middle.
     if (rotation > -0.003 && rotation < 0.003)
         rotation = 0;

@@ -95,13 +95,6 @@ var MA = {
         Matter.Body.rotate(rect, angle);
         Matter.World.add(MA.engine.world, rect);
     },
-    /* old concave polygon body
-    addFromPoints : function(x, y, points) {
-        var shape = Matter.Bodies.fromVertices(x, y, points, {isStatic: true});
-        Matter.World.add(MA.engine.world, shape);
-        return {x: shape.bounds.min.x, y: shape.bounds.min.y}
-    },
-    */
     clearWorld : function() {
         Matter.World.clear(MA.engine.world);
     }
