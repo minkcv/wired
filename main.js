@@ -29,6 +29,10 @@ function addSpinningObject(x, y, z, model, speed, scale, radius) {
         MA.addCircle(x, z, radius);
 }
 
+function addLevelTrigger(x, y, z, destination) {
+    TH.addLevelTrigger(x, y, z, destination);
+}
+
 function addWallShape(x, y, z, width, height, points, textureNames, addBodies, transparent) {
     for (key in points) {
         var point = points[key];
@@ -43,10 +47,11 @@ function addWallShape(x, y, z, width, height, points, textureNames, addBodies, t
             MA.addWall(p1, p2);
     }
 }
-function addAnimatedWall(p1, p2, y, height, textureName, tilesX, tilesY, totalTiles, delay, addBody) {
-    if (addBody)
-        MA.addWall(p1, p2);
-    TH.addAnimatedPlane(p1, p2, y, height, textureName, tilesX, tilesY, totalTiles, delay);
+
+function changeLevel (level) {
+    TH.clearScene();
+    MA.clearWorld();
+    level();
 }
 
 function rotatePlayer(angle) {
@@ -121,8 +126,8 @@ function init() {
     //loadLevel1();
     //TH.clearScene();
     //MA.clearWorld();
-    loadLevel2();
-    //loadLevel3();
+    //loadLevel2();
+    loadLevel3();
     //loadLevel4();
     //loadLevel5();
     //loadLevel6();

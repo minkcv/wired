@@ -37,6 +37,7 @@ function loadLevel1() {
 
     addObject(45, TH.floorY, 45, 10, models.sign, -3 * Math.PI / 4, 0.07);
     addObject(910, TH.floorY, 0, 10, models.sign, -Math.PI / 2, 0.07);
+    addLevelTrigger(45, -9, 45, loadLevel3);
 }
 
 function loadLevel2() {
@@ -169,6 +170,8 @@ function loadLevel3() {
     MA.addWall({x: 230, y: 30}, {x: 750, y: 30}); // Right wall 5
 
     addSpinningObject(720, -30, 0, models.flower, 0.01, 0.08, 10);
+    addLevelTrigger(720, -8, 0, loadLevel1);
+
     addObject(820, -45, -60, 10, models.angel, -Math.PI / 2);
     addObject(820, -45, 60, 10, models.angel, -Math.PI / 2);
 }

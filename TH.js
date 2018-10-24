@@ -3,18 +3,22 @@ var TH = {
         pinkLineMat : null,
         whiteLineMat : null,
         blackBasicMat : null,
-        greenBasicMat: null
+        greenBasicMat : null,
+        none : null
     },
     threediv : null,
     width : null,
     height : null,
     scene : null,
     camera : null,
+    raycaster: null,
+    mouseVec : null,
     renderer : null,
     floorY : -30,
     clock : null,
     animators : [],
     lines: [],
+    levelTriggers: [],
 
     init : function () {
         TH.threediv = document.getElementById('game'),
@@ -30,12 +34,16 @@ var TH = {
         TH.renderer.setSize(TH.width, TH.height);
         TH.threediv.appendChild(TH.renderer.domElement);
 
+        TH.raycaster = new THREE.Raycaster();
+        TH.mouseVec = new THREE.Vector2();
+
         TH.clock = new THREE.Clock();
 
         this.materials.pinkLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
         this.materials.whiteLineMat = new THREE.LineBasicMaterial({color: 0xf260d8});
         this.materials.blackBasicMat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
         this.materials.greenBasicMat = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide});
+        this.materials.none = new THREE.MeshBasicMaterial({color: 0x000000, transparent: true, opacity: 0});
     },
     run : function(update) {
         requestAnimationFrame( function(){TH.run(update)} );
@@ -108,6 +116,17 @@ var TH = {
         var animator = {model: addedModel, speed: speed};
         this.animators.push(animator);
     },
+    addLevelTrigger : function(x, y, z, destination) {
+        var geom = new THREE.BoxGeometry(5, 5, 5);
+        var mat = this.materials.none;
+        if (debug)
+            mat = this.materials.greenBasicMat;
+        var cube = new THREE.Mesh(geom, mat);
+        cube.destination = destination;
+        cube.position.set(x, y, z);
+        this.scene.add(cube);
+        this.levelTriggers.push(cube);
+    },
     createLine : function(pt1, pt2, scale) {
         var scale = scale || 0.1;
         pt1.position.multiplyScalar(scale);
@@ -135,6 +154,17 @@ var TH = {
         return geom;
     },
     update : function() {
+        if (mouseDown) {
+            this.raycaster.setFromCamera(TH.mouseVec, TH.camera);
+            var intersects = this.raycaster.intersectObjects(this.scene.children);
+            for (let index = 0; index < intersects.length; index++) {
+                var element = intersects[index];
+                if (element.object.destination && element.distance < 100) {
+                    changeLevel(element.object.destination);
+                }
+            }
+        }
+
         var delta = TH.clock.getDelta(); 
         for (var i in TH.animators) {
             var animator = TH.animators[i];

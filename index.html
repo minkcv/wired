@@ -78,6 +78,7 @@
             var mouseY = 0;
             var mouseDX = 0;
             var mouseDY = 0;
+            var mouseDown = false;
             addEventListener("keydown", function(e) {
                 keysDown[e.keyCode] = true;
             }, false);
@@ -90,12 +91,20 @@
                 mouseDY = mouseY - e.clientY;
                 mouseX = e.clientX;
                 mouseY = e.clientY;
+                TH.mouseVec.x = ( event.clientX / threed.clientWidth ) * 2 - 1;
+                TH.mouseVec.y = - ( event.clientY / threed.clientHeight ) * 2 + 1;
             }, false);
             threed.addEventListener('mouseout', function(e) {
                 mouseDX = 0;
                 mouseDY = 0;
                 mouseX = threed.clientWidth / 2; // Stop turning.
             }, false);
+            addEventListener('mousedown', function(e) {
+                mouseDown = true;
+            });
+            addEventListener('mouseup', function(e) {
+                mouseDown = false;
+            });
             addEventListener('resize', function(e) {
                 TH.resize(threed.clientWidth, threed.clientHeight);
             }, false);
