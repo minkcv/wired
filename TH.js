@@ -44,6 +44,7 @@ var TH = {
     },
     resize : function(width, height) {
         TH.renderer.setSize(width, height);
+        TH.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 4000);
     },
     addWall : function(p1, p2, height, y) {
         var length = distance(p1, p2);
