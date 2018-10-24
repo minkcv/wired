@@ -23,6 +23,12 @@ function addObject(x, y, z, radius, model, rotation, scale) {
         MA.addCircle(x, z, radius);
 }
 
+function addSpinningObject(x, y, z, model, speed, scale, radius) {
+    TH.addSpinningModel(x, y, z, model, speed, scale);
+    if (radius)
+        MA.addCircle(x, z, radius);
+}
+
 function addWallShape(x, y, z, width, height, points, textureNames, addBodies, transparent) {
     for (key in points) {
         var point = points[key];

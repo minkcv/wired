@@ -102,6 +102,11 @@ var TH = {
         var animator = {model: addedModel, pt1: pt1, pt2: pt2, speed: speed, loop: loop};
         this.animators.push(animator);
     },
+    addSpinningModel : function(x, y, z, model, speed, scale) {
+        var addedModel = this.addModel(x, y, z, model, 0, scale);
+        var animator = {model: addedModel, speed: speed};
+        this.animators.push(animator);
+    },
     createLine : function(pt1, pt2, scale) {
         var scale = scale || 0.1;
         pt1.position.multiplyScalar(scale);
@@ -132,20 +137,27 @@ var TH = {
         var delta = TH.clock.getDelta(); 
         for (var i in TH.animators) {
             var animator = TH.animators[i];
-            var dx = animator.pt2.x - animator.pt1.x;
-            var dy = animator.pt2.y - animator.pt1.y;
-            var dz = animator.pt2.z - animator.pt1.z;
-            dx *= delta * animator.speed;
-            dy *= delta * animator.speed;
-            dz *= delta * animator.speed;
-            if (Math.sign(dx) * (animator.model.position.x - animator.pt1.x) >= Math.sign(dx) * (animator.pt2.x - animator.pt1.x) &&
-                Math.sign(dy) * (animator.model.position.y - animator.pt1.y) >= Math.sign(dy) * (animator.pt2.y - animator.pt1.y) &&
-                Math.sign(dz) * (animator.model.position.z - animator.pt1.z) >= Math.sign(dz) * (animator.pt2.z - animator.pt1.z) && animator.loop) {
-                animator.model.position.set(animator.pt1.x, animator.pt1.y, animator.pt1.z);
+            if (animator.pt1 && animator.pt2) {
+                // Moving animator
+                var dx = animator.pt2.x - animator.pt1.x;
+                var dy = animator.pt2.y - animator.pt1.y;
+                var dz = animator.pt2.z - animator.pt1.z;
+                dx *= delta * animator.speed;
+                dy *= delta * animator.speed;
+                dz *= delta * animator.speed;
+                if (Math.sign(dx) * (animator.model.position.x - animator.pt1.x) >= Math.sign(dx) * (animator.pt2.x - animator.pt1.x) &&
+                    Math.sign(dy) * (animator.model.position.y - animator.pt1.y) >= Math.sign(dy) * (animator.pt2.y - animator.pt1.y) &&
+                    Math.sign(dz) * (animator.model.position.z - animator.pt1.z) >= Math.sign(dz) * (animator.pt2.z - animator.pt1.z) && animator.loop) {
+                    animator.model.position.set(animator.pt1.x, animator.pt1.y, animator.pt1.z);
+                }
+                else {
+                    var translate = new THREE.Vector3(dx, dy, dz);
+                    animator.model.position.add(translate);
+                }
             }
             else {
-                var translate = new THREE.Vector3(dx, dy, dz);
-                animator.model.position.add(translate);
+                // Spinning animator
+                animator.model.rotation.y += animator.speed;
             }
         }
     },

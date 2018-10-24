@@ -120,10 +120,26 @@ function loadLevel3() {
     }
 
     for (var index = 0; index < 8; index++) {
-        addObject(100 * index, TH.floorY, 180, 0, models.grass, Math.PI / 2);
-        addObject(100 * index, TH.floorY, -180, 0, models.grass, Math.PI / 2);
+        addObject(100 * index, TH.floorY, 170, 0, models.grass, Math.PI / 2);
+        addObject(100 * index, TH.floorY, -170, 0, models.grass, Math.PI / 2);
         if (index == 2 || index == 5) continue;
         addObject(100 * index, TH.floorY, -80, 0, models.grass, Math.PI / 2);
         addObject(100 * index, TH.floorY, 80, 0, models.grass, Math.PI / 2);
     }
+
+    MA.addWall({x: -50, y: -30}, {x: -50, y: 30}); // Back wall
+    MA.addWall({x: 750, y: -30}, {x: 750, y: 30}); // End wall
+    MA.addWall({x: -50, y: -30}, {x: 180, y: -30}); // Left wall 1
+    MA.addWall({x: 180, y: -60}, {x: 180, y: -30}); // Left wall 2
+    MA.addWall({x: 180, y: -60}, {x: 230, y: -60}); // Left wall 3
+    MA.addWall({x: 230, y: -60}, {x: 230, y: -30}); // Left wall 4
+    MA.addWall({x: 230, y: -30}, {x: 750, y: -30}); // Left wall 5
+
+    MA.addWall({x: -50, y: 30}, {x: 180, y: 30}); // Right wall 1
+    MA.addWall({x: 180, y: 60}, {x: 180, y: 30}); // Right wall 2
+    MA.addWall({x: 180, y: 60}, {x: 230, y: 60}); // Right wall 3
+    MA.addWall({x: 230, y: 60}, {x: 230, y: 30}); // Right wall 4
+    MA.addWall({x: 230, y: 30}, {x: 750, y: 30}); // Right wall 5
+
+    addSpinningObject(690, -30, 0, models.flower, 0.01, 0.08, 10);
 }
