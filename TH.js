@@ -22,7 +22,7 @@ var TH = {
         TH.height = TH.threediv.clientHeight;
         TH.scene = new THREE.Scene();
         //TH.scene.background = new THREE.Color(0x0c1013);
-        TH.camera = new THREE.PerspectiveCamera(45, TH.width / TH.height, 0.1, 4000);
+        TH.camera = new THREE.PerspectiveCamera(45, TH.width / TH.height, 0.1, 8000);
         TH.scene.add(TH.camera);
         TH.camera.rotateY(-3.14 / 2);
 

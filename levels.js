@@ -70,10 +70,18 @@ function loadLevel2() {
     TH.addFloor({x: -61, y: -340}, {x: 61, y: 760}, 31);
     TH.addFloor({x: -61, y: -340}, {x: 61, y: 760}, -31);
 
-    for (var index = -30; index < 30; index++) {
+    for (var index = -100; index < 100; index++) {
         addObject(840, -700, index * 100 + 10, 0, models.simpleTunnel, 0);
         addObject(800, 60, index * 100 + 10, 0, models.simpleTunnel, 0);
         addObject(860, -300, index * 100 + 10, 0, models.simpleTunnel, 0);
+
+        addObject(1040, -600, index * 100 + 10, 0, models.simpleTunnel, 0);
+        addObject(1400, 160, index * 100 + 10, 0, models.simpleTunnel, 0);
+        addObject(1860, -200, index * 100 + 10, 0, models.simpleTunnel, 0);
+
+        addObject(2240, -500, index * 100 + 10, 0, models.simpleTunnel, 0);
+        addObject(2600, 260, index * 100 + 10, 0, models.simpleTunnel, 0);
+        addObject(3060, -400, index * 100 + 10, 0, models.simpleTunnel, 0);
 
         addObject(index * 100, 200, -800, 0, models.simpleTunnel, Math.PI / 2);
         addObject(index * 100, -200, -400, 0, models.simpleTunnel, Math.PI / 2);
@@ -82,17 +90,36 @@ function loadLevel2() {
         addObject(index * 100, 300, 800, 0, models.simpleTunnel, Math.PI / 2);
         addObject(index * 100, 160, 1200, 0, models.simpleTunnel, Math.PI / 2);
 
+        addObject(index * 100, 200, -1800, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -200, -1400, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -500, -1100, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, -160, 1400, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, 300, 1800, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(index * 100, 160, 2200, 0, models.simpleTunnel, Math.PI / 2);
 
         addObject(400, index * 100, 1200, 0, models.shaft, Math.PI / 2);
         addObject(1400, index * 100, 200, 0, models.shaft, Math.PI / 2);
         addObject(600, index * 100, 600, 0, models.shaft, Math.PI / 2);
         addObject(600, index * 100, -100, 0, models.shaft, Math.PI / 2);
+
+        addObject(2400, index * 100, 1200, 0, models.shaft, Math.PI / 2);
+        addObject(1400, index * 100, 2200, 0, models.shaft, Math.PI / 2);
+        addObject(3600, index * 100, 3600, 0, models.shaft, Math.PI / 2);
+        addObject(1600, index * 100, -100, 0, models.shaft, Math.PI / 2);
+        addObject(3600, index * 100, -3600, 0, models.shaft, Math.PI / 2);
+        addObject(1600, index * 100, -1100, 0, models.shaft, Math.PI / 2);
+        addObject(400, index * 100, -600, 0, models.shaft, Math.PI / 2);
     }
 
-    TH.addMovingModel({x: -2000, y: 300, z: 380}, {x: 4000, y: 300, z: 380}, models.ship, Math.PI, 0.7, true, 0.3);
-    TH.addMovingModel({x: 4000, y: -300, z: -380}, {x: -4000, y: -300, z: -380}, models.ship, 0, 0.7, true, 0.3);
-    TH.addMovingModel({x: 300, y: 30, z: -3380}, {x: 300, y: 30, z: 3380}, models.ship, Math.PI / 2, 0.7, true, 0.3);
-    TH.addMovingModel({x: 400, y: -30, z: 4000}, {x: 400, y: -30, z: -4000}, models.ship, -Math.PI / 2, 0.4, true, 0.3);
+    TH.addMovingModel({x: -7000, y: 300, z: 380}, {x: 9000, y: 300, z: 380}, models.ship, Math.PI, 0.3, true, 0.3);
+    TH.addMovingModel({x: 8000, y: -300, z: -380}, {x: -8000, y: -300, z: -380}, models.ship, 0, 0.3, true, 0.3);
+    TH.addMovingModel({x: 300, y: 30, z: -8380}, {x: 300, y: 30, z: 8380}, models.ship, Math.PI / 2, 0.3, true, 0.3);
+    TH.addMovingModel({x: 400, y: -30, z: 8000}, {x: 400, y: -30, z: -8000}, models.ship, -Math.PI / 2, 0.3, true, 0.3);
+
+    TH.addMovingModel({x: -9000, y: 600, z: 180}, {x: 7000, y: 600, z: 180}, models.ship, Math.PI, 0.3, true, 0.3);
+    TH.addMovingModel({x: 6000, y: -600, z: -1380}, {x: -6000, y: -600, z: -1380}, models.ship, 0, 0.3, true, 0.3);
+    TH.addMovingModel({x: 600, y: 100, z: -7380}, {x: 600, y: 100, z: 7380}, models.ship, Math.PI / 2, 0.3, true, 0.3);
+    TH.addMovingModel({x: 800, y: -100, z: 9000}, {x: 800, y: -100, z: -7000}, models.ship, -Math.PI / 2, 0.3, true, 0.3);
 }
 
 function loadLevel3() {
