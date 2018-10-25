@@ -242,6 +242,7 @@ function loadLevel4() {
     MA.addWall({x: 450, y: -240}, {x: 850, y: -240});
     MA.addWall({x: 450, y: -330}, {x: 450, y: -360});
     MA.addWall({x: 450, y: -240}, {x: 450, y: -270});
+    MA.addWall({x: 850, y: -240}, {x: 850, y: -360}); // End of tunnel
 
     TH.addWall({x: 450, y: -361}, {x: 850, y: -361}, 100, 0);
     TH.addWall({x: 450, y: -239}, {x: 850, y: -239}, 100, 0);
