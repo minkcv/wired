@@ -49,9 +49,8 @@ function addWallShape(x, y, z, width, height, points, textureNames, addBodies, t
 }
 
 function changeLevel (level) {
-    TH.clearScene();
-    MA.clearWorld();
-    level();
+    TH.fadeOut = true;
+    TH.fadeOutDone = level;
 }
 
 function rotatePlayer(angle) {

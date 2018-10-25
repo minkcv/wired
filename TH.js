@@ -19,6 +19,11 @@ var TH = {
     animators : [],
     lines: [],
     levelTriggers: [],
+    fadeOut : false,
+    fadeOutDone : null,
+    fadeIn : false,
+    fadeSpeed : 0.03,
+    originalRGB: {r: 0, g: 0, b: 0},
 
     init : function () {
         TH.threediv = document.getElementById('game'),
@@ -40,6 +45,9 @@ var TH = {
         TH.clock = new THREE.Clock();
 
         this.materials.pinkLineMat = new THREE.LineBasicMaterial({color: 0xf442d4});
+        this.originalRGB.r = this.materials.pinkLineMat.color.r;
+        this.originalRGB.g = this.materials.pinkLineMat.color.g;
+        this.originalRGB.b = this.materials.pinkLineMat.color.b;
         this.materials.whiteLineMat = new THREE.LineBasicMaterial({color: 0xf260d8});
         this.materials.blackBasicMat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
         this.materials.greenBasicMat = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide});
@@ -154,6 +162,38 @@ var TH = {
         return geom;
     },
     update : function() {
+        if (this.fadeOut) {
+            if (this.materials.pinkLineMat.color.r > 0)
+                this.materials.pinkLineMat.color.r -= this.fadeSpeed;
+            if (this.materials.pinkLineMat.color.g > 0)
+                this.materials.pinkLineMat.color.g -= this.fadeSpeed;
+            if (this.materials.pinkLineMat.color.b > 0)
+                this.materials.pinkLineMat.color.b -= this.fadeSpeed;
+
+            if (this.materials.pinkLineMat.color.r < this.fadeSpeed &&
+                this.materials.pinkLineMat.color.g < this.fadeSpeed &&
+                this.materials.pinkLineMat.color.b < this.fadeSpeed) {
+                    this.fadeOut = false;
+                    TH.clearScene();
+                    MA.clearWorld();
+                    this.fadeOutDone();
+                    this.fadeIn = true;
+            }
+        }
+        else if (this.fadeIn) {
+            if (this.materials.pinkLineMat.color.r < this.originalRGB.r)
+                this.materials.pinkLineMat.color.r += this.fadeSpeed;
+            if (this.materials.pinkLineMat.color.g < this.originalRGB.g)
+                this.materials.pinkLineMat.color.g += this.fadeSpeed;
+            if (this.materials.pinkLineMat.color.b < this.originalRGB.b)
+                this.materials.pinkLineMat.color.b += this.fadeSpeed;
+
+            if (this.materials.pinkLineMat.color.r > this.originalRGB.r &&
+                this.materials.pinkLineMat.color.r > this.originalRGB.g &&
+                this.materials.pinkLineMat.color.r > this.originalRGB.b) {
+                    this.fadeIn = false;
+            }
+        }
         if (mouseDown) {
             this.raycaster.setFromCamera(TH.mouseVec, TH.camera);
             var intersects = this.raycaster.intersectObjects(this.scene.children);
