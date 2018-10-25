@@ -170,8 +170,82 @@ function loadLevel3() {
     MA.addWall({x: 230, y: 30}, {x: 750, y: 30}); // Right wall 5
 
     addSpinningObject(720, -30, 0, models.flower, 0.01, 0.08, 10);
-    addLevelTrigger(720, -8, 0, loadLevel1);
+    addLevelTrigger(720, -8, 0, loadLevel4);
 
     addObject(820, -45, -60, 10, models.angel, -Math.PI / 2);
     addObject(820, -45, 60, 10, models.angel, -Math.PI / 2);
+}
+
+function loadLevel4() {
+    createPlayer(0, 0, 0);
+    addObject(0, TH.floorY, 0, 0, models.path, Math.PI / 2);
+    addObject(100, TH.floorY, 0, 0, models.path, Math.PI / 2);
+    addObject(200, TH.floorY, 0, 0, models.leftPath, -Math.PI / 2);
+    addObject(200, TH.floorY, -100, 0, models.path, 0);
+    addObject(200, TH.floorY, -200, 0, models.path, 0);
+    addObject(200, TH.floorY, -300, 0, models.leftPath, Math.PI / 2);
+    addObject(300, TH.floorY, -300, 0, models.path, Math.PI / 2);
+    addObject(400, TH.floorY, -300, 0, models.path, Math.PI / 2);
+    MA.addWall({x: -50, y: -30}, {x: -50, y: 30}); // Back wall
+    MA.addWall({x: -50, y: -30}, {x: 170, y: -30});
+    MA.addWall({x: -50, y: 30}, {x: 230, y: 30});
+    MA.addWall({x: 230, y: 30}, {x: 230, y: -270});
+    MA.addWall({x: 170, y: -30}, {x: 170, y: -330});
+    MA.addWall({x: 170, y: -330}, {x: 450, y: -330});
+    MA.addWall({x: 230, y: -270}, {x: 450, y: -270});
+
+    // Left side of path
+    addObject(30, TH.floorY, -80, 0, models.grass, 0);
+    addObject(120, TH.floorY, -80, 0, models.grass, 0);
+    addObject(30, TH.floorY, -180, 0, models.grass, 0);
+    addObject(120, TH.floorY, -180, 0, models.grass, 0);
+    addObject(30, TH.floorY, -280, 0, models.grass, 0);
+    addObject(120, TH.floorY, -280, 0, models.grass, 0);
+    addObject(30, TH.floorY, -380, 0, models.grass, 0);
+    addObject(120, TH.floorY, -380, 0, models.grass, 0);
+    addObject(210, TH.floorY, -380, 0, models.grass, 0);
+    addObject(300, TH.floorY, -380, 0, models.grass, 0);
+    addObject(390, TH.floorY, -380, 0, models.grass, 0);
+
+    // Right side of path
+    addObject(30, TH.floorY, 80, 0, models.grass, 0);
+    addObject(120, TH.floorY, 80, 0, models.grass, 0);
+    addObject(210, TH.floorY, 80, 0, models.grass, 0);
+    addObject(300, TH.floorY, 80, 0, models.grass, 0);
+    addObject(280, TH.floorY, -10, 0, models.grass, 0);
+    addObject(280, TH.floorY, -100, 0, models.grass, 0);
+    addObject(280, TH.floorY, -190, 0, models.grass, 0);
+    addObject(370, TH.floorY, -10, 0, models.grass, 0);
+    addObject(370, TH.floorY, 80, 0, models.grass, 0);
+    addObject(370, TH.floorY, -100, 0, models.grass, 0);
+    addObject(370, TH.floorY, -190, 0, models.grass, 0);
+    addObject(280, TH.floorY, -220, 0, models.grass, 0);
+    addObject(340, TH.floorY, -220, 0, models.grass, 0);
+    addObject(390, TH.floorY, -220, 0, models.grass, 0);
+
+    // Right side of path
+    addObject(300, TH.floorY, -180, 10, models.totem, 0, 0.06);
+    addObject(300, TH.floorY, -80, 10, models.totem, 0, 0.06);
+
+    // Left side of path
+    addObject(100, TH.floorY, -80, 10, models.totem, 0, 0.06);
+    addObject(100, TH.floorY, -180, 10, models.totem, 0, 0.06);
+    addObject(300, TH.floorY, -360, 10, models.totem, 0, 0.06);
+    addObject(100, TH.floorY, -360, 10, models.totem, 0, 0.06);
+
+    for (let index = 0; index < 4; index++) {
+        addObject(500 + index * 100, TH.floorY, -300, 0, models.simpleTunnel, Math.PI / 2);
+    }
+
+    addObject(445, TH.floorY, -300, 0, models.tunnelEntrance, Math.PI / 2);
+    MA.addWall({x: 450, y: -360}, {x: 850, y: -360});
+    MA.addWall({x: 450, y: -240}, {x: 850, y: -240});
+    MA.addWall({x: 450, y: -330}, {x: 450, y: -360});
+    MA.addWall({x: 450, y: -240}, {x: 450, y: -270});
+
+    TH.addWall({x: 450, y: -361}, {x: 850, y: -361}, 100, 0);
+    TH.addWall({x: 450, y: -239}, {x: 850, y: -239}, 100, 0);
+
+    addObject(840, TH.floorY, -300, 10, models.sign, -Math.PI / 2, 0.07);
+    addLevelTrigger(840, -9, -300, loadLevel1);
 }
