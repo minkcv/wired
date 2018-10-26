@@ -84,19 +84,15 @@ function update() {
     var moveSpeed = 60 * TH.delta;
     if (debug && keys.shift in keysDown)
         moveSpeed = 8 * 60 * TH.delta;
+    
+   TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
 
-    /*
-    if (keys.left in keysDown)
-        rotatePlayer(0.03);
-    else if (keys.right in keysDown)
-        rotatePlayer(-0.03);
-    */
-
-    var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth * TH.delta * 3;
-    TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
+   var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth;
     // Deadzone in the middle.
     if (rotation > -0.003 && rotation < 0.003)
         rotation = 0;
+    
+    rotation *= TH.delta * 3
     rotatePlayer(rotation);
 
     if (keys.w in keysDown || keys.up in keysDown)
