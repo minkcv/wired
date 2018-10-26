@@ -79,12 +79,11 @@ function moveBackward(moveSpeed) {
     var yv = -Math.sin(MA.player.angle) * moveSpeed;
     Matter.Body.applyForce(MA.player, MA.player.position, {x: xv, y: yv});
 }
-
 function update() {
     stats.begin();
-    var moveSpeed = 1;
+    var moveSpeed = 60 * TH.delta;
     if (debug && keys.shift in keysDown)
-        moveSpeed = 8;
+        moveSpeed = 8 * 60 * TH.delta;
 
     /*
     if (keys.left in keysDown)
@@ -93,7 +92,7 @@ function update() {
         rotatePlayer(-0.03);
     */
 
-    var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth / 20;
+    var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth * TH.delta * 3;
     TH.camera.position.set(MA.player.position.x, 0, MA.player.position.y);
     // Deadzone in the middle.
     if (rotation > -0.003 && rotation < 0.003)

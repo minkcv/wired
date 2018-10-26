@@ -23,6 +23,7 @@ var TH = {
     fadeOutDone : null,
     fadeIn : false,
     fadeSpeed : 0.03,
+    delta : 0,
     originalRGB: {r: 0, g: 0, b: 0},
 
     init : function () {
@@ -55,6 +56,7 @@ var TH = {
     },
     run : function(update) {
         requestAnimationFrame( function(){TH.run(update)} );
+        this.delta = this.clock.getDelta();
         update();
         TH.renderer.render( TH.scene, TH.camera );
     },
@@ -94,7 +96,7 @@ var TH = {
                 var other = null;
                 model.forEach((candidate) => {
                     if (candidate.id == otherId)
-                    other = candidate;
+                        other = candidate;
                 });
                 if (other != null) {
                     var pos1 = new THREE.Vector3(point.pos.x, point.pos.y, point.pos.z);
@@ -205,7 +207,6 @@ var TH = {
             }
         }
 
-        var delta = TH.clock.getDelta(); 
         for (var i in TH.animators) {
             var animator = TH.animators[i];
             if (animator.pt1 && animator.pt2) {
@@ -213,9 +214,9 @@ var TH = {
                 var dx = animator.pt2.x - animator.pt1.x;
                 var dy = animator.pt2.y - animator.pt1.y;
                 var dz = animator.pt2.z - animator.pt1.z;
-                dx *= delta * animator.speed;
-                dy *= delta * animator.speed;
-                dz *= delta * animator.speed;
+                dx *= this.delta * animator.speed;
+                dy *= this.delta * animator.speed;
+                dz *= this.delta * animator.speed;
                 if (Math.sign(dx) * (animator.model.position.x - animator.pt1.x) >= Math.sign(dx) * (animator.pt2.x - animator.pt1.x) &&
                     Math.sign(dy) * (animator.model.position.y - animator.pt1.y) >= Math.sign(dy) * (animator.pt2.y - animator.pt1.y) &&
                     Math.sign(dz) * (animator.model.position.z - animator.pt1.z) >= Math.sign(dz) * (animator.pt2.z - animator.pt1.z) && animator.loop) {
