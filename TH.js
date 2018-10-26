@@ -22,7 +22,7 @@ var TH = {
     fadeOut : false,
     fadeOutDone : null,
     fadeIn : false,
-    fadeSpeed : 0.03,
+    fadeSpeed : 0.02,
     delta : 0,
     originalRGB: {r: 0, g: 0, b: 0},
 
@@ -49,6 +49,10 @@ var TH = {
         this.originalRGB.r = this.materials.pinkLineMat.color.r;
         this.originalRGB.g = this.materials.pinkLineMat.color.g;
         this.originalRGB.b = this.materials.pinkLineMat.color.b;
+        // Start black to fade in.
+        this.materials.pinkLineMat.color.r = 0;
+        this.materials.pinkLineMat.color.g = 0;
+        this.materials.pinkLineMat.color.b = 0;
         this.materials.whiteLineMat = new THREE.LineBasicMaterial({color: 0xf260d8});
         this.materials.blackBasicMat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
         this.materials.greenBasicMat = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide});

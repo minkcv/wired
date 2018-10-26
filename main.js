@@ -89,7 +89,7 @@ function update() {
 
    var rotation = -(mouseX - threed.clientWidth / 2) / threed.clientWidth;
     // Deadzone in the middle.
-    if (rotation > -0.003 && rotation < 0.003)
+    if (rotation > -0.06 && rotation < 0.06)
         rotation = 0;
     
     rotation *= TH.delta * 3
@@ -123,6 +123,7 @@ function init() {
     //loadLevel2();
     //loadLevel3();
     loadLevel4();
+    TH.fadeIn = true;
     //loadLevel5();
     //loadLevel6();
 }
