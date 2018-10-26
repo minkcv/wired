@@ -256,14 +256,67 @@ function loadLevel5() {
     for (let index = 0; index < 5; index++) {
         addObject(index * 100, TH.floorY, 0, 0, models.simpleTunnel, Math.PI / 2);
     }
+    MA.addWall({x: -50, y: -60}, {x: 450, y: -60}); // Left wall near
+    MA.addWall({x: -50, y: 60}, {x: 450, y: 60}); // Right wall near
+    MA.addWall({x: -50, y: -60}, {x: -50, y: 60}); // Back wall
+
+    MA.addWall({x: 750, y: -60}, {x: 1250, y: -60}); // Left wall far
+    MA.addWall({x: 750, y: 60}, {x: 1250, y: 60}); // Right wall far
+    MA.addWall({x: 1250, y: -60}, {x: 1250, y: 60}); // Far wall
+
+    // Tunnel Narrowing
+    MA.addWall({x: 450, y: -60}, {x: 450, y: -50});
+    MA.addWall({x: 450, y: 60}, {x: 450, y: 50});
+    MA.addWall({x: 750, y: -60}, {x: 750, y: -50});
+    MA.addWall({x: 750, y: 60}, {x: 750, y: 50});
+
+    // Side tunnel Narrowing
+    MA.addWall({x: 550, y: -150}, {x: 540, y: -150});
+    MA.addWall({x: 550, y: 150}, {x: 540, y: 150});
+    MA.addWall({x: 650, y: -150}, {x: 660, y: -150});
+    MA.addWall({x: 650, y: 150}, {x: 660, y: 150});
+
+    // Side tunnels
+    MA.addWall({x: 660, y: 150}, {x: 660, y: 650});
+    MA.addWall({x: 660, y: -150}, {x: 660, y: -650});
+    MA.addWall({x: 540, y: 150}, {x: 540, y: 650});
+    MA.addWall({x: 540, y: -150}, {x: 540, y: -650});
+
+    // Side tunnel ends
+    MA.addWall({x: 540, y: -650}, {x: 660, y: -650});
+    MA.addWall({x: 540, y: 650}, {x: 660, y: 650});
+
     addObject(600, TH.floorY, 0, 0, models.rotunda, 0);
+
+    // Rotunda inner walls
+    // Near
+    MA.addWall({x: 450, y: -50}, {x: 505, y: -50});
+    MA.addWall({x: 450, y: 50}, {x: 505, y: 50});
+    // Far
+    MA.addWall({x: 750, y: -50}, {x: 700, y: -50});
+    MA.addWall({x: 750, y: 50}, {x: 700, y: 50});
+    // Left
+    MA.addWall({x: 550, y: -150}, {x: 550, y: -100});
+    MA.addWall({x: 650, y: -150}, {x: 650, y: -100});
+    // Right
+    MA.addWall({x: 550, y: 150}, {x: 550, y: 100});
+    MA.addWall({x: 650, y: 150}, {x: 650, y: 100});
+    // Angled parts
+    MA.addWall({x: 505, y: -50}, {x: 550, y: -100});
+    MA.addWall({x: 505, y: 50}, {x: 550, y: 100});
+    MA.addWall({x: 700, y: -50}, {x: 650, y: -100});
+    MA.addWall({x: 700, y: 50}, {x: 650, y: 100});
+
     for (let index = 0; index < 5; index++) {
         addObject(800 + index * 100, TH.floorY, 0, 0, models.simpleTunnel, Math.PI / 2);
         addObject(600, TH.floorY, 200 + index * 100, 0, models.simpleTunnel, 0); // Right side
         addObject(600, TH.floorY, -200 - index * 100, 0, models.simpleTunnel, 0); // Left side
     }
 
-    for (let index = 0; index < 5; index++) {
+    // Top and bottom for rotunda.
+    TH.addFloor({x: -1000, y: -1000}, {x: 1000, y: 1000}, 110);
+    TH.addFloor({x: -1000, y: -1000}, {x: 1000, y: 1000}, -81);
+    for (let index = -1; index < 5; index++) {
         // left near
         TH.addMovingModel({x: 505, y: 100 - index * 60, z: -95}, {x: 505, y: 40 - index * 60, z: -95}, models.waterfall, Math.PI / 4, 0.5, true);
         // right near
