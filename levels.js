@@ -248,5 +248,29 @@ function loadLevel4() {
     TH.addWall({x: 450, y: -239}, {x: 850, y: -239}, 100, 0);
 
     addObject(840, TH.floorY, -300, 10, models.sign, -Math.PI / 2, 0.07);
-    addLevelTrigger(840, -9, -300, loadLevel1);
+    addLevelTrigger(840, -9, -300, loadLevel5);
+}
+
+function loadLevel5() {
+    createPlayer(0, 0, 0);
+    for (let index = 0; index < 5; index++) {
+        addObject(index * 100, TH.floorY, 0, 0, models.simpleTunnel, Math.PI / 2);
+    }
+    addObject(600, TH.floorY, 0, 0, models.rotunda, 0);
+    for (let index = 0; index < 5; index++) {
+        addObject(800 + index * 100, TH.floorY, 0, 0, models.simpleTunnel, Math.PI / 2);
+        addObject(600, TH.floorY, 200 + index * 100, 0, models.simpleTunnel, 0); // Right side
+        addObject(600, TH.floorY, -200 - index * 100, 0, models.simpleTunnel, 0); // Left side
+    }
+
+    for (let index = 0; index < 5; index++) {
+        // left near
+        TH.addMovingModel({x: 505, y: 100 - index * 60, z: -95}, {x: 505, y: 40 - index * 60, z: -95}, models.waterfall, Math.PI / 4, 0.5, true);
+        // right near
+        TH.addMovingModel({x: 505, y: 100 - index * 60, z: 95}, {x: 505, y: 40 - index * 60, z: 95}, models.waterfall, -Math.PI / 4, 0.5, true);
+        // left far
+        TH.addMovingModel({x: 700, y: 100 - index * 60, z: -95}, {x: 700, y: 40 - index * 60, z: -95}, models.waterfall, -Math.PI / 4, 0.5, true);
+        // right far
+        TH.addMovingModel({x: 700, y: 100 - index * 60, z: 95}, {x: 700, y: 40 - index * 60, z: 95}, models.waterfall, Math.PI / 4, 0.5, true);
+    }
 }
