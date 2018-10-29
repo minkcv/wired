@@ -255,6 +255,7 @@ function loadLevel5() {
     createPlayer(0, 0, 0);
     for (let index = 0; index < 5; index++) {
         addObject(index * 100, TH.floorY, 0, 0, models.simpleTunnel, Math.PI / 2);
+        addTunnel(index * 100, 0, 0, 0);
     }
     MA.addWall({x: -50, y: -60}, {x: 450, y: -60}); // Left wall near
     MA.addWall({x: -50, y: 60}, {x: 450, y: 60}); // Right wall near
@@ -308,8 +309,11 @@ function loadLevel5() {
     MA.addWall({x: 700, y: 50}, {x: 650, y: 100});
 
     for (let index = 0; index < 5; index++) {
+        addTunnel(800 + index * 100, 0, 0, 0);
         addObject(800 + index * 100, TH.floorY, 0, 0, models.simpleTunnel, Math.PI / 2);
+        addTunnel(600, 0, 200 + index * 100, Math.PI / 2);
         addObject(600, TH.floorY, 200 + index * 100, 0, models.simpleTunnel, 0); // Right side
+        addTunnel(600, 0, -200 - index * 100, Math.PI / 2);
         addObject(600, TH.floorY, -200 - index * 100, 0, models.simpleTunnel, 0); // Left side
     }
 

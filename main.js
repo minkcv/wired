@@ -33,6 +33,25 @@ function addLevelTrigger(x, y, z, destination) {
     TH.addLevelTrigger(x, y, z, destination);
 }
 
+function addTunnel(x, y, z, rotation) {
+    var tunnelBottom = [{x: -51, y: -31, z: -51}, {x: 51, y: -31, z: -51}, {x: 51, y: -31, z: 51}, {x: -51, y: -31, z: 51}];
+    TH.addShape(x, y, z, tunnelBottom, rotation);
+    var tunnelBottomLeft = [{x: -51, y: -31, z: -51}, {x: 51, y: -31, z: -51}, {x: 51, y: -21, z: -61}, {x: -51, y: -21, z: -61}];
+    TH.addShape(x, y, z, tunnelBottomLeft, rotation);
+    var tunnelTop = [{x: -51, y: 31, z: -51}, {x: 51, y: 31, z: -51}, {x: 51, y: 31, z: 51}, {x: -51, y: 31, z: 51}];
+    TH.addShape(x, y, z, tunnelTop, rotation);
+    var tunnelBottomRight = [{x: -51, y: -31, z: 51}, {x: 51, y: -31, z: 51}, {x: 51, y: -21, z: 61}, {x: -51, y: -21, z: 61}];
+    TH.addShape(x, y, z, tunnelBottomRight, rotation);
+    var tunnelTopLeft = [{x: -51, y: 31, z: -51}, {x: 51, y: 31, z: -51}, {x: 51, y: 21, z: -61}, {x: -51, y: 21, z: -61}];
+    TH.addShape(x, y, z, tunnelTopLeft, rotation);
+    var tunnelTopRight = [{x: -51, y: 31, z: 51}, {x: 51, y: 31, z: 51}, {x: 51, y: 21, z: 61}, {x: -51, y: 21, z: 61}];
+    TH.addShape(x, y, z, tunnelTopRight, rotation);
+    var tunnelLeft = [{x: -51, y: -21, z: -61}, {x: 51, y: -21, z: -61}, {x: 51, y: 21, z: -61}, {x: -51, y: 21, z: -61}];
+    TH.addShape(x, y, z, tunnelLeft, rotation);
+    var tunnelRight = [{x: -51, y: -21, z: 61}, {x: 51, y: -21, z: 61}, {x: 51, y: 21, z: 61}, {x: -51, y: 21, z: 61}];
+    TH.addShape(x, y, z, tunnelRight, rotation);
+}
+
 function addWallShape(x, y, z, width, height, points, textureNames, addBodies, transparent) {
     for (key in points) {
         var point = points[key];
@@ -121,9 +140,9 @@ function init() {
     //TH.clearScene();
     //MA.clearWorld();
     //loadLevel2();
-    loadLevel3();
+    //loadLevel3();
     //loadLevel4();
-    //loadLevel5();
+    loadLevel5();
     //loadLevel6();
     TH.fadeIn = true;
 }

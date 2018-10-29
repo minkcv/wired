@@ -3,7 +3,7 @@ var TH = {
         pinkLineMat : null,
         whiteLineMat : null,
         blackBasicMat : null,
-        greenBasicMat : null,
+        debugBasicMat : null,
         none : null
     },
     threediv : null,
@@ -55,7 +55,7 @@ var TH = {
         this.materials.pinkLineMat.color.b = 0;
         this.materials.whiteLineMat = new THREE.LineBasicMaterial({color: 0xf260d8});
         this.materials.blackBasicMat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide});
-        this.materials.greenBasicMat = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide});
+        this.materials.debugBasicMat = new THREE.MeshBasicMaterial({color: 0x0c1013, side: THREE.DoubleSide});
         this.materials.none = new THREE.MeshBasicMaterial({color: 0x000000, transparent: true, opacity: 0});
     },
     run : function(update) {
@@ -90,6 +90,20 @@ var TH = {
         floor.position.set(p1.x + width / 2, y, p1.y + depth / 2);
         floor.rotation.x = -Math.PI / 2;
         TH.scene.add(floor);
+    },
+    addShape : function(x, y, z, points, rotation) {
+        var thPoints = [];
+        points.forEach((point) => {
+            thPoints.push(new THREE.Vector3(point.x, point.y, point.z));
+        });
+        var geometry = new THREE.ConvexGeometry(thPoints);
+        var mat = this.materials.blackBasicMat;
+        if (debug)
+            mat = this.materials.debugBasicMat;
+        var mesh = new THREE.Mesh(geometry, mat);
+        mesh.position.set(x, y, z);
+        mesh.rotation.y = rotation;
+        this.scene.add(mesh);
     },
     addModel : function(x, y, z, model, yRotation, scale) {
         var mat = this.materials.pinkLineMat;
@@ -134,7 +148,7 @@ var TH = {
         var geom = new THREE.BoxGeometry(5, 5, 5);
         var mat = this.materials.none;
         if (debug)
-            mat = this.materials.greenBasicMat;
+            mat = this.materials.debugBasicMat;
         var cube = new THREE.Mesh(geom, mat);
         cube.destination = destination;
         cube.position.set(x, y, z);
