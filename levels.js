@@ -235,6 +235,7 @@ function loadLevel4() {
 
     for (let index = 0; index < 4; index++) {
         addObject(500 + index * 100, TH.floorY, -300, 0, models.simpleTunnel, Math.PI / 2);
+        addTunnel(500 + index * 100, 0, -300, 0);
     }
 
     addObject(445, TH.floorY, -300, 0, models.tunnelEntrance, Math.PI / 2);
@@ -243,9 +244,6 @@ function loadLevel4() {
     MA.addWall({x: 450, y: -330}, {x: 450, y: -360});
     MA.addWall({x: 450, y: -240}, {x: 450, y: -270});
     MA.addWall({x: 850, y: -240}, {x: 850, y: -360}); // End of tunnel
-
-    TH.addWall({x: 450, y: -361}, {x: 850, y: -361}, 100, 0);
-    TH.addWall({x: 450, y: -239}, {x: 850, y: -239}, 100, 0);
 
     addObject(840, TH.floorY, -300, 10, models.sign, -Math.PI / 2, 0.07);
     addLevelTrigger(840, -9, -300, loadLevel5);
