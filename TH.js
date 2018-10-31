@@ -105,6 +105,21 @@ var TH = {
         mesh.rotation.y = rotation;
         this.scene.add(mesh);
     },
+    addShape2 : function(x, y, z, points) {
+        var thPoints = [];
+        points.forEach((point) => {
+            thPoints.push(new THREE.Vector2(point.x, point.z));
+        })
+        var shape = new THREE.Shape(thPoints);
+        var geometry = new THREE.ShapeGeometry(shape);
+        var mat = this.materials.blackBasicMat;
+        if (debug)
+            mat = this.materials.debugBasicMat;
+        var floor = new THREE.Mesh(geometry, mat);
+        floor.position.set(x, y, z);
+        floor.rotation.x = Math.PI / 2;
+        TH.scene.add(floor);
+    },
     addModel : function(x, y, z, model, yRotation, scale) {
         var mat = this.materials.pinkLineMat;
         this.lines = [];

@@ -34,21 +34,21 @@ function addLevelTrigger(x, y, z, destination) {
 }
 
 function addTunnel(x, y, z, rotation) {
-    var tunnelBottom = [{x: -51, y: -31, z: -51}, {x: 51, y: -31, z: -51}, {x: 51, y: -31, z: 51}, {x: -51, y: -31, z: 51}];
+    var tunnelBottom = [{x: -50.3, y: -30.3, z: -50.3}, {x: 50.3, y: -30.3, z: -50.3}, {x: 50.3, y: -30.3, z: 50.3}, {x: -50.3, y: -30.3, z: 50.3}];
     TH.addShape(x, y, z, tunnelBottom, rotation);
-    var tunnelBottomLeft = [{x: -51, y: -31, z: -51}, {x: 51, y: -31, z: -51}, {x: 51, y: -21, z: -61}, {x: -51, y: -21, z: -61}];
+    var tunnelBottomLeft = [{x: -50.3, y: -30.3, z: -50.3}, {x: 50.3, y: -30.3, z: -50.3}, {x: 50.3, y: -20.3, z: -60.3}, {x: -50.3, y: -20.3, z: -60.3}];
     TH.addShape(x, y, z, tunnelBottomLeft, rotation);
-    var tunnelTop = [{x: -51, y: 31, z: -51}, {x: 51, y: 31, z: -51}, {x: 51, y: 31, z: 51}, {x: -51, y: 31, z: 51}];
+    var tunnelTop = [{x: -50.3, y: 30.3, z: -50.3}, {x: 50.3, y: 30.3, z: -50.3}, {x: 50.3, y: 30.3, z: 50.3}, {x: -50.3, y: 30.3, z: 50.3}];
     TH.addShape(x, y, z, tunnelTop, rotation);
-    var tunnelBottomRight = [{x: -51, y: -31, z: 51}, {x: 51, y: -31, z: 51}, {x: 51, y: -21, z: 61}, {x: -51, y: -21, z: 61}];
+    var tunnelBottomRight = [{x: -50.3, y: -30.3, z: 50.3}, {x: 50.3, y: -30.3, z: 50.3}, {x: 50.3, y: -20.3, z: 60.3}, {x: -50.3, y: -20.3, z: 60.3}];
     TH.addShape(x, y, z, tunnelBottomRight, rotation);
-    var tunnelTopLeft = [{x: -51, y: 31, z: -51}, {x: 51, y: 31, z: -51}, {x: 51, y: 21, z: -61}, {x: -51, y: 21, z: -61}];
+    var tunnelTopLeft = [{x: -50.3, y: 30.3, z: -50.3}, {x: 50.3, y: 30.3, z: -50.3}, {x: 50.3, y: 20.3, z: -60.3}, {x: -50.3, y: 20.3, z: -60.3}];
     TH.addShape(x, y, z, tunnelTopLeft, rotation);
-    var tunnelTopRight = [{x: -51, y: 31, z: 51}, {x: 51, y: 31, z: 51}, {x: 51, y: 21, z: 61}, {x: -51, y: 21, z: 61}];
+    var tunnelTopRight = [{x: -50.3, y: 30.3, z: 50.3}, {x: 50.3, y: 30.3, z: 50.3}, {x: 50.3, y: 20.3, z: 60.3}, {x: -50.3, y: 20.3, z: 60.3}];
     TH.addShape(x, y, z, tunnelTopRight, rotation);
-    var tunnelLeft = [{x: -51, y: -21, z: -61}, {x: 51, y: -21, z: -61}, {x: 51, y: 21, z: -61}, {x: -51, y: 21, z: -61}];
+    var tunnelLeft = [{x: -50.3, y: -20.3, z: -60.3}, {x: 50.3, y: -20.3, z: -60.3}, {x: 50.3, y: 20.3, z: -60.3}, {x: -50.3, y: 20.3, z: -60.3}];
     TH.addShape(x, y, z, tunnelLeft, rotation);
-    var tunnelRight = [{x: -51, y: -21, z: 61}, {x: 51, y: -21, z: 61}, {x: 51, y: 21, z: 61}, {x: -51, y: 21, z: 61}];
+    var tunnelRight = [{x: -50.3, y: -20.3, z: 60.3}, {x: 50.3, y: -20.3, z: 60.3}, {x: 50.3, y: 20.3, z: 60.3}, {x: -50.3, y: 20.3, z: 60.3}];
     TH.addShape(x, y, z, tunnelRight, rotation);
 }
 
@@ -111,7 +111,7 @@ function update() {
     if (rotation > -0.06 && rotation < 0.06)
         rotation = 0;
     
-    rotation *= TH.delta * 3
+    rotation *= TH.delta * 3;
     rotatePlayer(rotation);
 
     if (keys.w in keysDown || keys.up in keysDown)

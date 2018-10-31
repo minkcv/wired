@@ -288,6 +288,31 @@ function loadLevel5() {
     MA.addWall({x: 540, y: 650}, {x: 660, y: 650});
 
     addObject(600, TH.floorY, 0, 0, models.rotunda, 0);
+    var rotundaFloor = [{x:50,y:-0.1,z:100},{x:50,y:0,z:100},{x:-50,y:0,z:100},{x:-100,y:0,z:50},{x:100,y:0,z:50},{x:100,y:0,z:-50},{x:-100,y:0,z:-50},{x:50,y:0,z:-100},{x:-50,y:0,z:-100},{x:-100,y:0,z:50},{x:-100,y:0,z:-50}];
+    TH.addShape(600, TH.floorY - 0.1, 0, rotundaFloor, 0);
+
+    var floorRect = [{x: -50, y: 0, z: -50}, {x: -50, y: 0, z: 50}, {x: 50, y: 0, z: 50}, {x: 50, y: 0, z: -50}];
+    TH.addShape(500, TH.floorY - 0.1, 0, floorRect, 0);
+    TH.addShape(700, TH.floorY - 0.1, 0, floorRect, 0);
+    TH.addShape(600, TH.floorY - 0.1, -100, floorRect, Math.PI / 2);
+    TH.addShape(600, TH.floorY - 0.1, 100, floorRect, Math.PI / 2);
+
+    var wallRect1 = [{x: 0, y: -70, z: -40}, {x: 0, y: 70, z: -40}, {x: 0, y: 70, z: 40}, {x: 0, y: -70, z: 40}];
+    TH.addShape(528, -100, 77, wallRect1, Math.PI / 4);
+    TH.addShape(528, -100, -77, wallRect1, -Math.PI / 4);
+    TH.addShape(673, -100, -77, wallRect1, Math.PI / 4);
+    TH.addShape(673, -100, 77, wallRect1, -Math.PI / 4);
+
+    var wallRect2 = [{x: -25, y: -70, z: 0}, {x: -25, y: 70, z: 0}, {x: 25, y: 70, z: 0}, {x: 25, y: -70, z: 0}];
+    TH.addShape(550.1, -100, 125, wallRect2, Math.PI / 2);
+    TH.addShape(550.1, -100, -125, wallRect2, Math.PI / 2);
+    TH.addShape(650 - 0.1, -100, 125, wallRect2, Math.PI / 2);
+    TH.addShape(650 - 0.1, -100, -125, wallRect2, Math.PI / 2);
+
+    TH.addShape(475, -100, 50 - 0.1, wallRect2, 0);
+    TH.addShape(475, -100, -50 + 0.1, wallRect2, 0);
+    TH.addShape(725, -100, 50 - 0.1, wallRect2, 0);
+    TH.addShape(725, -100, -50 + 0.1, wallRect2, 0);
 
     // Rotunda inner walls
     // Near
