@@ -229,12 +229,15 @@ var TH = {
                     this.fadeIn = false;
             }
         }
-        if (mouseDown) {
-            this.raycaster.setFromCamera(TH.mouseVec, TH.camera);
-            var intersects = this.raycaster.intersectObjects(this.scene.children);
-            for (let index = 0; index < intersects.length; index++) {
-                var element = intersects[index];
-                if (element.object.destination && element.distance < 100) {
+        
+        document.body.style.cursor = 'crosshair';
+        this.raycaster.setFromCamera(TH.mouseVec, TH.camera);
+        var intersects = this.raycaster.intersectObjects(this.scene.children);
+        for (let index = 0; index < intersects.length; index++) {
+            var element = intersects[index];
+            if (element.object.destination && element.distance < 100) {
+                document.body.style.cursor = 'pointer';
+                if (mouseDown) {
                     changeLevel(element.object.destination);
                 }
             }
