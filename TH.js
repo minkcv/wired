@@ -236,7 +236,8 @@ var TH = {
         for (let index = 0; index < intersects.length; index++) {
             var element = intersects[index];
             if (element.object.destination && element.distance < 100) {
-                document.body.style.cursor = 'pointer';
+                if (!TH.fadeOut)
+                    document.body.style.cursor = 'pointer';
                 if (mouseDown) {
                     changeLevel(element.object.destination);
                 }

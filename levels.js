@@ -353,4 +353,25 @@ function loadLevel5() {
         // right far
         TH.addMovingModel({x: 700, y: 100 - index * 60, z: 95}, {x: 700, y: 40 - index * 60, z: 95}, models.waterfall, Math.PI / 4, 0.5, true);
     }
+
+    addObject(600, TH.floorY, -640, 10, models.sign, 0, 0.07);
+    addLevelTrigger(600, -9, -640, loadLevel6);
+
+    addObject(600, TH.floorY, 640, 10, models.sign, Math.PI, 0.07);
+    addLevelTrigger(600, -9, 640, loadLevel6);
+
+    addObject(1240, TH.floorY, 0, 10, models.sign, -Math.PI / 2, 0.07);
+    addLevelTrigger(1240, -9, 0, loadLevel7);
+}
+
+function loadLevel6() {
+
+}
+
+function loadLevel7() {
+    
+}
+
+function loadLevel8() {
+    
 }

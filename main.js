@@ -110,7 +110,7 @@ function update() {
     // Deadzone in the middle.
     if (rotation > -0.06 && rotation < 0.06)
         rotation = 0;
-    
+
     rotation *= TH.delta * 3;
     rotatePlayer(rotation);
 
