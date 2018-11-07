@@ -154,9 +154,15 @@ var TH = {
         var animator = {model: addedModel, pt1: pt1, pt2: pt2, speed: speed, loop: loop};
         this.animators.push(animator);
     },
-    addSpinningModel : function(x, y, z, model, speed, scale) {
-        var addedModel = this.addModel(x, y, z, model, 0, scale);
+    addSpinningModel : function(x, y, z, model, speed, scale, axis, rotation) {
+        var addedModel = this.addModel(x, y, z, model, rotation, scale);
         var animator = {model: addedModel, speed: speed};
+        if (axis == 'x')
+            animator.spinX = true;
+        if (axis == 'y')
+            animator.spinY = true;
+        if (axis == 'z')
+            animator.spinZ = true;
         this.animators.push(animator);
     },
     addLevelTrigger : function(x, y, z, destination) {
@@ -266,7 +272,12 @@ var TH = {
             }
             else {
                 // Spinning animator
-                animator.model.rotation.y += animator.speed;
+                if (animator.spinX)
+                    animator.model.rotation.x += animator.speed;
+                if (animator.spinY)
+                    animator.model.rotation.y += animator.speed;
+                if (animator.spinZ)
+                    animator.model.rotation.z += animator.speed;
             }
         }
     },

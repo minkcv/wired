@@ -23,8 +23,8 @@ function addObject(x, y, z, radius, model, rotation, scale) {
         MA.addCircle(x, z, radius);
 }
 
-function addSpinningObject(x, y, z, model, speed, scale, radius) {
-    TH.addSpinningModel(x, y, z, model, speed, scale);
+function addSpinningObject(x, y, z, model, speed, scale, radius, axis, rotation) {
+    TH.addSpinningModel(x, y, z, model, speed, scale, axis, rotation);
     if (radius)
         MA.addCircle(x, z, radius);
 }
@@ -142,8 +142,8 @@ function init() {
     //loadLevel2();
     //loadLevel3();
     //loadLevel4();
-    loadLevel5();
-    //loadLevel6();
+    //loadLevel5();
+    loadLevel6();
     TH.fadeIn = true;
 }
 init();
