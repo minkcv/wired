@@ -58,17 +58,7 @@ var MA = {
     _update : function(event) {
         for (index in MA.creatures) {
             var body = MA.creatures[index].body;
-            if (Math.random() < 0.1) {
-                var xv = (0.5 - Math.random()) * 0.001;
-                var yv = (0.5 - Math.random()) * 0.001;
-                Matter.Body.applyForce(body, body.position, {x: xv, y: yv});
-            }
-        }
-        for (index in MA.creatures) {
-            var body = MA.creatures[index].body;
-            var sprite = MA.creatures[index].sprite;
-            sprite.position.x = body.position.x;
-            sprite.position.z = body.position.y;
+            Matter.Body.rotate(body, -0.01, {x: body.otherX, y: body.otherY});
         }
     },
     addCircle : function(x, z, radius, sprite) {
@@ -78,6 +68,16 @@ var MA = {
             MA.creatures.push({body: circle, sprite: sprite});
         }
         return circle;
+    },
+    addFromPoints : function(x, z, points) {
+        var shape = Matter.Vertices.fromPath(points);
+        var body = Matter.Bodies.fromVertices(x, z, shape, {isStatic: true});
+        body.friction = 0;
+        body.frictionAir = 0;
+        body.otherX = x;
+        body.otherY = z+20;
+        MA.creatures.push({body: body});
+        Matter.World.add(MA.engine.world, body);
     },
     addBox : function(x, y, width, depth) {
         var boxA = Matter.Bodies.rectangle(x, y, width, depth, {isStatic: true});
