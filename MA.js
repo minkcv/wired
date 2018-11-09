@@ -69,14 +69,16 @@ var MA = {
         }
         return circle;
     },
-    addFromPoints : function(x, z, points) {
+    addFromPoints : function(x, z, points, isSpinRoom) {
         var shape = Matter.Vertices.fromPath(points);
         var body = Matter.Bodies.fromVertices(x, z, shape, {isStatic: true});
         body.friction = 0;
         body.frictionAir = 0;
-        body.otherX = x;
-        body.otherY = z+20;
-        MA.creatures.push({body: body});
+        if (isSpinRoom) {
+            body.otherX = x;
+            body.otherY = z+20;
+            MA.creatures.push({body: body});
+        }
         Matter.World.add(MA.engine.world, body);
     },
     addBox : function(x, y, width, depth) {
