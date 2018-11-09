@@ -165,13 +165,13 @@ var TH = {
             animator.spinZ = true;
         this.animators.push(animator);
     },
-    addSpinningCylinderPart : function(x, y, z, radius, height, speed) {
+    addSpinningCylinderPart : function(x, y, z, radius, height, speed, yRotation) {
         var geom1 = new THREE.CylinderGeometry(radius, radius, height, 64, 1, true, 0, 5.49);
         var mat = this.materials.blackBasicMat;
         if (debug)
             mat = this.materials.debugBasicMat;
         var cylinder1 = new THREE.Mesh(geom1, mat);
-        cylinder1.rotation.y = Math.PI / 2 + 0.392;
+        cylinder1.rotation.y = yRotation;
         cylinder1.position.x = x;
         cylinder1.position.y = y;
         cylinder1.position.z = z;
