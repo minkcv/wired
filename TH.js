@@ -85,6 +85,8 @@ var TH = {
         var width = p2.x - p1.x;
         var depth = p2.y - p1.y;
         var mat = this.materials.blackBasicMat;
+        if (debug)
+            mat = this.materials.debugBasicMat;
         var geometry = new THREE.PlaneBufferGeometry(width, depth);
         var floor = new THREE.Mesh( geometry, mat);
         floor.position.set(p1.x + width / 2, y, p1.y + depth / 2);
