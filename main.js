@@ -18,15 +18,16 @@ function addSprite(x, y, z, width, height, scale, textureName, tilesX, tilesY, t
 }
 
 function addObject(x, y, z, radius, model, rotation, scale) {
-    TH.addModel(x, y, z, model, rotation, scale);
     if (radius)
         MA.addCircle(x, z, radius);
+    return TH.addModel(x, y, z, model, rotation, scale);
 }
 
 function addSpinningObject(x, y, z, model, speed, scale, radius, axis, rotation) {
-    TH.addSpinningModel(x, y, z, model, speed, scale, axis, rotation);
     if (radius)
         MA.addCircle(x, z, radius);
+    
+    return TH.addSpinningModel(x, y, z, model, speed, scale, axis, rotation);
 }
 
 function addLevelTrigger(x, y, z, destination) {

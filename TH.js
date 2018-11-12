@@ -25,6 +25,7 @@ var TH = {
     fadeSpeed : 0.02,
     delta : 0,
     originalRGB: {r: 0, g: 0, b: 0},
+    screens: [],
 
     init : function () {
         TH.threediv = document.getElementById('game'),
@@ -62,6 +63,15 @@ var TH = {
         requestAnimationFrame( function(){TH.run(update)} );
         this.delta = this.clock.getDelta();
         update();
+        TH.screens.forEach((screen) => {
+            screen.hiddenObjs.forEach((obj) => {
+                obj.visible = false;
+            });
+            TH.renderer.render( TH.scene, screen.camera, screen.target );
+            screen.hiddenObjs.forEach((obj) => {
+                obj.visible = true;
+            });
+        });
         TH.renderer.render( TH.scene, TH.camera );
     },
     resize : function(width, height) {
@@ -166,6 +176,7 @@ var TH = {
         if (axis == 'z')
             animator.spinZ = true;
         this.animators.push(animator);
+        return addedModel;
     },
     addSpinningCylinderPart : function(x, y, z, radius, height, speed, yRotation) {
         var geom1 = new THREE.CylinderGeometry(radius, radius, height, 64, 1, true, 0, 5.49);
@@ -191,6 +202,22 @@ var TH = {
         cube.position.set(x, y, z);
         this.scene.add(cube);
         this.levelTriggers.push(cube);
+    },
+    addScreen : function(camX, camY, camZ, x, y, z, width, height, camRotation, rotation, rotateSpeed, hidden) {
+        hidden = hidden || [];
+        var renderTarget = new THREE.WebGLRenderTarget(width * 10, height * 10);
+        var screenCamera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+        screenCamera.position.set(camX, camY, camZ);
+        screenCamera.rotation.y = camRotation;
+        var geometry = new THREE.PlaneBufferGeometry(width, height, 32);
+        var mat = new THREE.MeshBasicMaterial({map: renderTarget.texture});
+        var plane = new THREE.Mesh(geometry, mat);
+        plane.position.set(x, y, z);
+        plane.rotation.y = rotation;
+        TH.scene.add(plane);
+        hidden.push(plane);
+        this.screens.push({camera: screenCamera, target: renderTarget, hiddenObjs: hidden});
+        this.animators.push({model: screenCamera, speed: rotateSpeed, spinY: true})
     },
     createLine : function(pt1, pt2, scale) {
         var scale = scale || 0.1;
