@@ -92,6 +92,7 @@ var TH = {
         plane.rotateY(angle);
         plane.position.y = y;
         TH.scene.add(plane);
+        return plane;
     },
     addFloor : function (p1, p2, y) {
         var width = p2.x - p1.x;
@@ -207,7 +208,7 @@ var TH = {
     },
     addScreen : function(camX, camY, camZ, x, y, z, width, height, camRotation, rotation, rotateSpeed, hidden) {
         hidden = hidden || [];
-        var renderTarget = new THREE.WebGLRenderTarget(width * 10, height * 10);
+        var renderTarget = new THREE.WebGLRenderTarget(width * 15, height * 15);
         var screenCamera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
         screenCamera.position.set(camX, camY, camZ);
         screenCamera.rotation.y = camRotation;

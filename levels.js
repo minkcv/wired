@@ -483,6 +483,12 @@ function loadLevel6() {
     MA.addWall({x: 340, y: 260}, {x: 220, y: 260});
 
     TH.addWall({x: 440, y: 150}, {x: 0, y: 150}, 100, 0);
+    TH.addWall({x: 560, y: 150}, {x: 800, y: 150}, 100, 0);
+
+    var obscuringWall1 = TH.addWall({x: 0, y: -151}, {x: 800, y: -151}, 100, 0);
+    var obscuringWall2 = TH.addWall({x: 220, y: 240}, {x: 340, y: 240}, 100, 0);
+
+    TH.addModel(280, TH.floorY, 180, models.angel, 0, 0.05);
 
     // Wall gears
     addSpinningObject(240, 10, 260, models.gear, 0.01, 0.1, 0, 'z', 0);
@@ -492,13 +498,15 @@ function loadLevel6() {
 
     var lense2 = addObject(280, TH.floorY, 550, 15, models.lenses, Math.PI, 0.1);
 
-    TH.addScreen(499, 0, 0, 640, 0, 410, 60, 40, -Math.PI, -Math.PI / 2, 0.01, [lense1]);
+    TH.addScreen(499, 0, 0, 640, 0, 410, 60, 40, -Math.PI, -Math.PI / 2, 0.01, [lense1, obscuringWall1]);
     addObject(640, TH.floorY, 410, 0, models.display, -Math.PI / 2);
     MA.addBox(640, 410, 40, 80);
 
-    TH.addScreen(280, 0, 550, 140, 0, 410, 60, 40, 0, Math.PI / 2, 0, [lense2]);
+    TH.addScreen(280, 0, 550, 140, 0, 410, 60, 40, 0, Math.PI / 2, 0, [lense2, obscuringWall2]);
     addObject(140, TH.floorY, 410, 0, models.display, Math.PI / 2);
     MA.addBox(140, 410, 40, 80);
+
+    TH.addModel(499, TH.floorY, -200, models.flower, -Math.PI / 4);
 
     TH.addModel(850, TH.floorY, 0, models.sign, -Math.PI / 2, 0.07);
     addLevelTrigger(850, -9, 0, loadLevel5);
