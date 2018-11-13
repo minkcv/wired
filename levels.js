@@ -492,9 +492,13 @@ function loadLevel6() {
 
     var lense2 = addObject(280, TH.floorY, 550, 15, models.lenses, Math.PI, 0.1);
 
-    TH.addScreen(499, 0, 0, 660, 0, 410, 60, 40, -Math.PI, -Math.PI / 2, 0.01, [lense1]);
+    TH.addScreen(499, 0, 0, 640, 0, 410, 60, 40, -Math.PI, -Math.PI / 2, 0.01, [lense1]);
+    addObject(640, TH.floorY, 410, 0, models.display, -Math.PI / 2);
+    MA.addBox(640, 410, 40, 80);
 
     TH.addScreen(280, 0, 550, 140, 0, 410, 60, 40, 0, Math.PI / 2, 0, [lense2]);
+    addObject(140, TH.floorY, 410, 0, models.display, Math.PI / 2);
+    MA.addBox(140, 410, 40, 80);
 
     TH.addModel(850, TH.floorY, 0, models.sign, -Math.PI / 2, 0.07);
     addLevelTrigger(850, -9, 0, loadLevel5);
