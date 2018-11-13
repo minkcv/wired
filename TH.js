@@ -82,6 +82,8 @@ var TH = {
         var length = distance(p1, p2);
         var geometry = new THREE.PlaneBufferGeometry(length, height, 32);
         var mat = this.materials.blackBasicMat;
+        if (debug)
+            mat = this.materials.debugBasicMat;
         var plane = new THREE.Mesh(geometry, mat);
         var midpoint = {x: p1.x + (p2.x - p1.x) / 2, y: p1.y + (p2.y - p1.y) / 2};
         plane.position.x = midpoint.x;

@@ -442,6 +442,17 @@ function loadLevel6() {
     addObject(390, TH.floorY, 410, 0, models.simpleTunnel, Math.PI / 2);
     addTunnel(390, 0, 410, 0);
 
+    addObject(170, TH.floorY, 410, 0, models.simpleTunnel, Math.PI / 2);
+    addTunnel(170, 0, 410, 0);
+
+    addObject(280, TH.floorY, 520, 0, models.simpleTunnel, 0);
+    addTunnel(280, 0, 520, Math.PI / 2);
+
+    addObject(280, TH.floorY, 300, 0, models.simpleTunnel, 0);
+    addTunnel(280, 0, 300, Math.PI / 2);
+
+    addObject(280, TH.floorY, 410, 0, models.intersection, 0);
+
     MA.addWall({x: 660, y: 350}, {x: 560, y: 350});
     MA.addWall({x: 660, y: 470}, {x: 560, y: 470});
 
@@ -449,7 +460,7 @@ function loadLevel6() {
     MA.addWall({x: 340, y: 470}, {x: 440, y: 470});
 
     //Side ends
-    MA.addWall({x: 340, y: 350}, {x: 340, y: 470});
+    MA.addWall({x: 120, y: 350}, {x: 120, y: 470});
     MA.addWall({x: 660, y: 350}, {x: 660, y: 470});
 
     // Bottom tunnel walls
@@ -458,17 +469,32 @@ function loadLevel6() {
     // Bottom tunnel end
     MA.addWall({x: 440, y: 570}, {x: 560, y: 570});
 
-    // Wall gears
-    addSpinningObject(540, 10, 570, models.gear, 0.01, 0.1, 0, 'z', 0);
-    addSpinningObject(540, -15, 570, models.gear, -0.01, 0.1, 0, 'z', 0);
-    addSpinningObject(460, 10, 570, models.gear, 0.01, 0.1, 0, 'z', 0);
-    addSpinningObject(460, -15, 570, models.gear, -0.01, 0.1, 0, 'z', 0);
+    MA.addWall({x: 220, y: 350}, {x: 120, y: 350});
+    MA.addWall({x: 220, y: 470}, {x: 120, y: 470});
 
-    var lense2 = addObject(500, TH.floorY, 550, 15, models.lenses, Math.PI, 0.1);
+    MA.addWall({x: 340, y: 470}, {x: 340, y: 570});
+    MA.addWall({x: 220, y: 470}, {x: 220, y: 570});
+
+    MA.addWall({x: 340, y: 570}, {x: 220, y: 570});
+
+    MA.addWall({x: 340, y: 260}, {x: 340, y: 350});
+    MA.addWall({x: 220, y: 260}, {x: 220, y: 350});
+
+    MA.addWall({x: 340, y: 260}, {x: 220, y: 260});
+
+    TH.addWall({x: 440, y: 150}, {x: 0, y: 150}, 100, 0);
+
+    // Wall gears
+    addSpinningObject(240, 10, 260, models.gear, 0.01, 0.1, 0, 'z', 0);
+    addSpinningObject(240, -15, 260, models.gear, -0.01, 0.1, 0, 'z', 0);
+    addSpinningObject(320, 10, 260, models.gear, 0.01, 0.1, 0, 'z', 0);
+    addSpinningObject(320, -15, 260, models.gear, -0.01, 0.1, 0, 'z', 0);
+
+    var lense2 = addObject(280, TH.floorY, 550, 15, models.lenses, Math.PI, 0.1);
 
     TH.addScreen(499, 0, 0, 660, 0, 410, 60, 40, -Math.PI, -Math.PI / 2, 0.01, [lense1]);
 
-    TH.addScreen(500, 0, 550, 340, 0, 410, 60, 40, 0, Math.PI / 2, 0, [lense2]);
+    TH.addScreen(280, 0, 550, 140, 0, 410, 60, 40, 0, Math.PI / 2, 0, [lense2]);
 
     TH.addModel(850, TH.floorY, 0, models.sign, -Math.PI / 2, 0.07);
     addLevelTrigger(850, -9, 0, loadLevel5);
