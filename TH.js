@@ -319,11 +319,11 @@ var TH = {
             else {
                 // Spinning animator
                 if (animator.spinX)
-                    animator.model.rotation.x += animator.speed;
+                    animator.model.rotation.x += animator.speed * this.delta;
                 if (animator.spinY)
-                    animator.model.rotation.y += animator.speed;
+                    animator.model.rotation.y += animator.speed * this.delta;
                 if (animator.spinZ)
-                    animator.model.rotation.z += animator.speed;
+                    animator.model.rotation.z += animator.speed * this.delta;
             }
         }
     },

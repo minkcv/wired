@@ -372,13 +372,14 @@ function loadLevel6() {
     }
 
     // Visuals
-    TH.addSpinningCylinderPart(499, 10, 0, 149, 75, 0.01, 0.392);
-    TH.addSpinningCylinderPart(499, 10, 0, 141, 75, 0.01, 0.392);
+    var rotateSpeed = 0.5;
+    TH.addSpinningCylinderPart(499, 10, 0, 149, 75, rotateSpeed, 0.392);
+    TH.addSpinningCylinderPart(499, 10, 0, 141, 75, rotateSpeed, 0.392);
     var floorPoints = [{x:0,y:-1,z:0},{x:-150,y:0,z:0},{x:-147.11849999999998,y:0,z:-29.2635},{x:-138.582,y:0,z:-57.402},{x:-124.7205,y:0,z:-83.33550000000001},{x:-106.0665,y:0,z:-106.0665},{x:-83.33550000000001,y:0,z:-124.7205},{x:-57.402,y:0,z:-138.582},{x:-29.2635,y:0,z:-147.11849999999998},{x:0,y:0,z:-150},{x:29.2635,y:0,z:-147.11849999999998},{x:57.402,y:0,z:-138.582},{x:83.33550000000001,y:0,z:-124.7205},{x:106.0665,y:0,z:-106.0665},{x:124.7205,y:0,z:-83.33550000000001},{x:138.582,y:0,z:-57.402},{x:147.11849999999998,y:0,z:-29.2635},{x:150,y:0,z:0},{x:147.11849999999998,y:0,z:29.2635},{x:138.582,y:0,z:57.402},{x:124.7205,y:0,z:83.33550000000001},{x:106.0665,y:0,z:106.0665},{x:83.33550000000001,y:0,z:124.7205},{x:57.402,y:0,z:138.582},{x:29.2635,y:0,z:147.11849999999998},{x:0,y:0,z:150},{x:-29.2635,y:0,z:147.11849999999998},{x:-57.402,y:0,z:138.582},{x:-83.33550000000001,y:0,z:124.7205},{x:-106.0665,y:0,z:106.0665},{x:-124.7205,y:0,z:83.33550000000001},{x:-138.582,y:0,z:57.402},{x:-147.11849999999998,y:0,z:29.2635}]
     TH.addShape(499, -27, 0, floorPoints, 0);
-    TH.addSpinningModel(499, 10, 0, models.spinroom, 0.01, 0.15, 'y', 0);
-    TH.addSpinningModel(499, 10, 0, models.spinroomthreshhold, 0.01, 0.15, 'y', 0);
-    TH.addSpinningModel(499, 10, 0, models.spinroom, 0.01, 0.14, 'y', 0);
+    TH.addSpinningModel(499, 10, 0, models.spinroom, rotateSpeed, 0.15, 'y', 0);
+    TH.addSpinningModel(499, 10, 0, models.spinroomthreshhold, rotateSpeed, 0.15, 'y', 0);
+    TH.addSpinningModel(499, 10, 0, models.spinroom, rotateSpeed, 0.14, 'y', 0);
     TH.addModel(499, -25, 0, models.spinroomfloor, 0, 0.14);
 
     /*
@@ -404,13 +405,13 @@ function loadLevel6() {
     MA.addWall({x: 150, y: -60}, {x: 150, y: 60}); // Back wall
     
     // Center gears
-    addSpinningObject(490, -29, 0, models.gearflat, 0.01, 0.1, 15, 'y', 0);
-    addSpinningObject(490, -29, 25, models.gearflat, -0.01, 0.1, 15, 'y', 0);
-    addSpinningObject(490, -29, -25, models.gearflat, -0.01, 0.1, 15, 'y', 0);
-    addSpinningObject(515, -29, 0, models.gearflat, -0.01, 0.1, 15, 'y', 0);
-    addSpinningObject(465, -29, 0, models.gearflat, -0.01, 0.1, 15, 'y', 0);
+    addSpinningObject(490, -29, 0, models.gearflat, rotateSpeed, 0.1, 15, 'y', 0);
+    addSpinningObject(490, -29, 25, models.gearflat, -rotateSpeed, 0.1, 15, 'y', 0);
+    addSpinningObject(490, -29, -25, models.gearflat, -rotateSpeed, 0.1, 15, 'y', 0);
+    addSpinningObject(515, -29, 0, models.gearflat, -rotateSpeed, 0.1, 15, 'y', 0);
+    addSpinningObject(465, -29, 0, models.gearflat, -rotateSpeed, 0.1, 15, 'y', 0);
 
-    var lense1 = addSpinningObject(490, -27, 0, models.lenses, 0.01, 0.1, 15, 'y', 0);
+    var lense1 = addSpinningObject(490, -27, 0, models.lenses, rotateSpeed, 0.1, 15, 'y', 0);
 
     // Right tunnel
     for (let index = 0; index < 2; index++) {
@@ -491,10 +492,10 @@ function loadLevel6() {
     TH.addModel(280, TH.floorY, 180, models.angel, 0, 0.05);
 
     // Wall gears
-    addSpinningObject(240, 10, 260, models.gear, 0.01, 0.1, 0, 'z', 0);
-    addSpinningObject(240, -15, 260, models.gear, -0.01, 0.1, 0, 'z', 0);
-    addSpinningObject(320, 10, 260, models.gear, 0.01, 0.1, 0, 'z', 0);
-    addSpinningObject(320, -15, 260, models.gear, -0.01, 0.1, 0, 'z', 0);
+    addSpinningObject(240, 10, 260, models.gear, rotateSpeed, 0.1, 0, 'z', 0);
+    addSpinningObject(240, -15, 260, models.gear, -rotateSpeed, 0.1, 0, 'z', 0);
+    addSpinningObject(320, 10, 260, models.gear, rotateSpeed, 0.1, 0, 'z', 0);
+    addSpinningObject(320, -15, 260, models.gear, -rotateSpeed, 0.1, 0, 'z', 0);
 
     var lense2 = addObject(280, TH.floorY, 550, 15, models.lenses, Math.PI, 0.1);
 
