@@ -58,7 +58,7 @@ var MA = {
     _update : function(event) {
         for (index in MA.creatures) {
             var body = MA.creatures[index].body;
-            Matter.Body.rotate(body, -0.01, {x: body.otherX, y: body.otherY});
+            Matter.Body.rotate(body, -0.5 * TH.delta, {x: body.otherX, y: body.otherY});
         }
     },
     addCircle : function(x, z, radius, sprite) {
