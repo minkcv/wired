@@ -513,9 +513,41 @@ function loadLevel6() {
 }
 
 function loadLevel7() {
-    
-}
+    createPlayer(0, 0, 0);
+    var map = [
+        1, 0, 0, 0, 0, 1,
+        1, 0, 1, 1, 1, 1,
+        1, 1, 1, 0, 1, 0,
+        0, 0, 1, 1, 1, 0,
+        0, 0, 0, 1, 0, 0,
+        1, 0, 0, 1, 1, 1,
+    ];
 
-function loadLevel8() {
-    
+    var index = 0;
+    while (index < 10) {
+        var x = Math.random() * 600;
+        var z = Math.random() * 600;
+        if (map[Math.floor(z / 100) * 6 + Math.floor(x / 100)]) {
+            var rotation = Math.random() * Math.PI * 2;
+            addObject(x - 50, TH.floorY, z - 50, 10, models.tendril, rotation);
+            index++;
+        }
+    }
+    // Bounds
+    MA.addBox(250, -55, 600, 10);
+    MA.addBox(250, 555, 600, 10);
+    MA.addBox(-55, 250, 10, 600);
+    MA.addBox(555, 250, 10, 600);
+    for (let x = 0; x < 6; x++) {
+        for (let z = 0; z < 6; z++) {
+            if (map[z * 6 + x])
+                TH.addModel(x * 100, TH.floorY, z * 100, models.unevenfloor, 0);
+            else
+                MA.addBox(x * 100, z * 100, 100, 100);
+        }
+    }
+    TH.addModel(300, TH.floorY, 200, models.fountain, 0, 0.1);
+
+    TH.addModel(520, TH.floorY, 500, models.sign, -Math.PI / 2, 0.07);
+    addLevelTrigger(520, -9, 500, loadLevel5);
 }
