@@ -358,7 +358,7 @@ function loadLevel5() {
     addLevelTrigger(600, -9, -640, loadLevel6);
 
     addObject(600, TH.floorY, 640, 10, models.sign, Math.PI, 0.07);
-    addLevelTrigger(600, -9, 640, loadLevel6);
+    addLevelTrigger(600, -9, 640, loadLevel8);
 
     addObject(1240, TH.floorY, 0, 10, models.sign, -Math.PI / 2, 0.07);
     addLevelTrigger(1240, -9, 0, loadLevel7);
@@ -528,6 +528,8 @@ function loadLevel7() {
     while (index < 10) {
         var x = Math.random() * 600;
         var z = Math.random() * 600;
+        if (Math.floor(z / 100) * 6 + Math.floor(x / 100) == 35)
+            continue; // Keep tendrils out of the level trigger tile.
         if (map[Math.floor(z / 100) * 6 + Math.floor(x / 100)]) {
             var rotation = Math.random() * Math.PI * 2;
             addObject(x - 50, TH.floorY, z - 50, 10, models.tendril, rotation);
@@ -548,7 +550,28 @@ function loadLevel7() {
         }
     }
     TH.addModel(300, TH.floorY, 200, models.fountain, 0, 0.1);
+    TH.addModel(500, TH.floorY, 200, models.bench, -Math.PI, 0.08);
+    TH.addModel(300, TH.floorY, 0, models.bench, -Math.PI / 2, 0.08);
 
     TH.addModel(520, TH.floorY, 500, models.sign, -Math.PI / 2, 0.07);
     addLevelTrigger(520, -9, 500, loadLevel5);
+}
+
+function loadLevel8() {
+    createPlayer(-500, 0, 0);
+    TH.addModel(0, TH.floorY, 0, models.pentagramFloor, 0, 0.4);
+    for (var dist = 150; dist < 400; dist += 100) {
+        var angleDelta = 45 / dist;
+        for (var x = 0; x < Math.PI * 2; x+= angleDelta) {
+            var scale = Math.random() *0.04 + 0.06;
+            if (Math.random() > 0.5) // Leave random gaps
+                addObject(Math.sin(x) * dist, TH.floorY, Math.cos(x) * dist, 10, models.deadTree, Math.random() * Math.PI * 2, scale);
+            else if (Math.random() > 0.5)
+                addObject(Math.sin(x) * dist, TH.floorY, Math.cos(x) * dist, 10, models.deadTree2, Math.random() * Math.PI * 2, scale);
+            else if (Math.random() > 0.5)
+                addObject(Math.sin(x) * dist, TH.floorY, Math.cos(x) * dist, 10, models.deadTree3, Math.random() * Math.PI * 2, scale);
+        }
+    }
+    TH.addModel(0, TH.floorY, 0, models.sign, -Math.PI / 2, 0.07);
+    addLevelTrigger(0, -9, 0, loadLevel5);
 }

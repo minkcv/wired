@@ -146,6 +146,7 @@ function init() {
     //loadLevel5();
     //loadLevel6();
     //loadLevel7();
+    //loadLevel8();
     TH.fadeIn = true;
 }
 init();
