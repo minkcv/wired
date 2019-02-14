@@ -289,6 +289,8 @@ function loadLevel5() {
     var rotundaFloor = [{x:50,y:-0.1,z:100},{x:50,y:0,z:100},{x:-50,y:0,z:100},{x:-100,y:0,z:50},{x:100,y:0,z:50},{x:100,y:0,z:-50},{x:-100,y:0,z:-50},{x:50,y:0,z:-100},{x:-50,y:0,z:-100},{x:-100,y:0,z:50},{x:-100,y:0,z:-50}];
     TH.addShape(600, TH.floorY - 0.1, 0, rotundaFloor, 0);
 
+    TH.addModel(600, TH.floorY, 0, models.compass, -Math.PI / 2, 0.1);
+
     var floorRect = [{x: -50, y: 0, z: -50}, {x: -50, y: 0, z: 50}, {x: 50, y: 0, z: 50}, {x: 50, y: 0, z: -50}];
     TH.addShape(500, TH.floorY - 0.1, 0, floorRect, 0);
     TH.addShape(700, TH.floorY - 0.1, 0, floorRect, 0);
