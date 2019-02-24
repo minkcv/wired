@@ -501,7 +501,7 @@ function loadLevel6() {
 
     var lense2 = addObject(280, TH.floorY, 550, 15, models.lenses, Math.PI, 0.1);
 
-    TH.addScreen(499, 0, 0, 640, 0, 410, 60, 40, -Math.PI, -Math.PI / 2, 0.01, [lense1, obscuringWall1]);
+    TH.addScreen(499, 0, 0, 640, 0, 410, 60, 40, -Math.PI, -Math.PI / 2, rotateSpeed, [lense1, obscuringWall1]);
     addObject(640, TH.floorY, 410, 0, models.display, -Math.PI / 2);
     MA.addBox(640, 410, 40, 80);
 
